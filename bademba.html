@@ -282,10 +282,25 @@ animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
     <!-- HERO SECTION -->
     <section class="relative min-h-screen flex flex-col justify-center items-center overflow-hidden pt-20">
 
-        <!-- Background Image -->
-        <div class="absolute inset-0 z-0">
-            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/188cdcbb-e873-4c0e-8de5-e1964f10af9e_3840w.jpg?w=800&q=80" alt="Gym Background" class="w-full h-full object-cover grayscale brightness-[0.2] contrast-125">
-            <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-obsidian/80"></div>
+        <!-- Background Videos -->
+        <div class="absolute inset-0 z-0 overflow-hidden">
+            <!-- Video Container - 3 videos side by side -->
+            <div class="absolute inset-0 flex">
+                <div class="flex-1 h-full relative overflow-hidden">
+                    <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover grayscale brightness-[0.25] contrast-125 scale-110" src="video1.mp4"></video>
+                </div>
+                <div class="flex-1 h-full relative overflow-hidden">
+                    <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover grayscale brightness-[0.25] contrast-125 scale-110" src="video2.mp4"></video>
+                </div>
+                <div class="flex-1 h-full relative overflow-hidden">
+                    <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover grayscale brightness-[0.25] contrast-125 scale-110" src="video3.mp4"></video>
+                </div>
+            </div>
+            <!-- Dark Overlay -->
+            <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/60 to-obsidian/80"></div>
+            <!-- Side Fades for seamless blending -->
+            <div class="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-obsidian to-transparent"></div>
+            <div class="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-obsidian to-transparent"></div>
         </div>
 
         <!-- Ambient Glow -->
