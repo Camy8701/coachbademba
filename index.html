@@ -987,6 +987,32 @@ animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
             link.addEventListener('click', toggleMenu);
         });
 
+        // 7. Language Switching
+        document.querySelectorAll('.lang-option').forEach(option => {
+            option.addEventListener('click', function() {
+                const lang = this.dataset.lang;
+                const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+
+                // Remove any existing language suffix
+                let basePage = currentPage.replace(/-fr\.html$/, '.html').replace(/-de\.html$/, '.html');
+
+                // If it's the index page, handle specially
+                if (basePage === '' || basePage === 'index.html') {
+                    basePage = 'index.html';
+                }
+
+                // Build new URL based on selected language
+                let newPage;
+                if (lang === 'en') {
+                    newPage = basePage;
+                } else {
+                    newPage = basePage.replace('.html', `-${lang}.html`);
+                }
+
+                window.location.href = newPage;
+            });
+        });
+
     </script>
 
 </body></html>

@@ -649,6 +649,18 @@ html { scroll-behavior: smooth; }
         menuBtn.addEventListener('click', toggleMenu);
         closeMenuBtn.addEventListener('click', toggleMenu);
         menuLinks.forEach(link => { link.addEventListener('click', toggleMenu); });
+
+        // Language Switching
+        document.querySelectorAll('.lang-option').forEach(option => {
+            option.addEventListener('click', function() {
+                const lang = this.dataset.lang;
+                const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+                let basePage = currentPage.replace(/-fr\.html$/, '.html').replace(/-de\.html$/, '.html');
+                if (basePage === '' || basePage === 'index.html') basePage = 'index.html';
+                let newPage = lang === 'en' ? basePage : basePage.replace('.html', `-${lang}.html`);
+                window.location.href = newPage;
+            });
+        });
     </script>
 
 </body></html>

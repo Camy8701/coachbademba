@@ -406,6 +406,18 @@ animation: checkmark 0.5s ease-out forwards;
             duration: 0.8,
             ease: 'power3.out'
         });
+
+        // Language Switching
+        document.querySelectorAll('.lang-option').forEach(option => {
+            option.addEventListener('click', function() {
+                const lang = this.dataset.lang;
+                const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+                let basePage = currentPage.replace(/-fr\.html$/, '.html').replace(/-de\.html$/, '.html');
+                if (basePage === '' || basePage === 'index.html') basePage = 'index.html';
+                let newPage = lang === 'en' ? basePage : basePage.replace('.html', `-${lang}.html`);
+                window.location.href = newPage;
+            });
+        });
     </script>
 
 </body></html>
