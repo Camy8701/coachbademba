@@ -1,0 +1,654 @@
+<html lang="fr"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bademba Training | Forgez Votre Force</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+<script>
+tailwind.config = {
+theme: {
+extend: {
+colors: {
+'obsidian': '#050505',
+'charcoal': '#0F1115',
+'acid': '#CCFF00',
+'silver': '#E1E1E1',
+'glass': 'rgba(255, 255, 255, 0.05)'
+},
+fontFamily: {
+'sans': ['Space Grotesk', 'sans-serif'],
+'display': ['Syncopate', 'sans-serif'],
+},
+backgroundImage: {
+'grid-pattern': "linear-gradient(to right, #1f2937 1px, transparent 1px), linear-gradient(to bottom, #1f2937 1px, transparent 1px)",
+},
+dropShadow: {
+'neon': '0 0 5px rgba(204, 255, 0, 0.5)',
+'hard': '4px 4px 0px rgba(0, 0, 0, 1)',
+}
+}
+}
+}
+</script>
+<style>
+body { background-color: #050505; color: #E1E1E1; overflow-x: hidden; }
+html { scroll-behavior: smooth; }
+.glass-panel { background: rgba(15, 17, 21, 0.6); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
+.text-outline { -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3); color: transparent; }
+.text-outline-acid { -webkit-text-stroke: 1px #CCFF00; color: transparent; }
+.noise { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9000; opacity: 0.04; background: url('https://grainy-gradients.vercel.app/noise.svg'); }
+.marquee-container { mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); }
+.stacking-card { position: sticky; top: 100px; box-shadow: 0 -10px 40px rgba(0,0,0,0.5); }
+.stacking-card:nth-child(1) { z-index: 1; }
+.stacking-card:nth-child(2) { z-index: 2; }
+.stacking-card:nth-child(3) { z-index: 3; }
+.number-hover { display: inline-block; transition: all 0.3s ease; }
+.number-hover:hover { color: #CCFF00; transform: scale(1.1); text-shadow: 0 0 20px rgba(204, 255, 0, 0.5); }
+.lang-dropdown { position: relative; }
+.lang-dropdown-content { display: none; position: absolute; top: 100%; right: 0; background: rgba(15, 17, 21, 0.95); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; min-width: 150px; z-index: 100; overflow: hidden; }
+.lang-dropdown:hover .lang-dropdown-content { display: block; }
+.lang-option { display: flex; align-items: center; gap: 10px; padding: 10px 16px; cursor: pointer; transition: all 0.2s; }
+.lang-option:hover { background: rgba(204, 255, 0, 0.1); color: #CCFF00; }
+.neon-hover:hover { box-shadow: 0 0 20px rgba(204, 255, 0, 0.3); border-color: #CCFF00; }
+.card-image-container img { transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+.neon-hover:hover .card-image-container img { transform: scale(1.1); }
+.roadmap-img { transition: opacity 0.6s ease-in-out, transform 0.8s ease-out; opacity: 0; transform: scale(1.05); }
+.roadmap-img.active { opacity: 1; transform: scale(1); }
+.phase-dot { background-color: #4b5563; box-shadow: none; transition: all 0.4s ease; }
+.phase-label { color: #9ca3af; transition: color 0.4s ease; }
+.phase-title { color: #6b7280; transition: color 0.4s ease; }
+.roadmap-phase.active-phase .phase-dot { background-color: #CCFF00; box-shadow: 0 0 15px #CCFF00; transform: scale(1.2); }
+.roadmap-phase.active-phase .phase-label { color: #CCFF00; }
+.roadmap-phase.active-phase .phase-title { color: white; }
+.mobile-menu { transform: translateX(100%); transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+.mobile-menu.open { transform: translateX(0); }
+.title-gradient { background-image: linear-gradient(to bottom, #FFFFFF 0%, #9ca3af 50%, #111827 100%); }
+.glitch-hover:hover { animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite; }
+@keyframes glitch { 0% { transform: translate(0) } 20% { transform: translate(-2px, 2px) } 40% { transform: translate(-2px, -2px) } 60% { transform: translate(2px, 2px) } 80% { transform: translate(2px, -2px) } 100% { transform: translate(0) } }
+</style>
+</head>
+<body class="antialiased selection:bg-acid selection:text-black">
+
+    <div class="noise"></div>
+
+    <nav class="fixed top-0 w-full z-50 px-6 py-4 backdrop-blur-md bg-obsidian/60 border-b border-white/5 transition-all duration-300">
+        <div class="flex justify-between items-center max-w-7xl mx-auto">
+            <a href="index-fr.html" class="text-2xl font-display font-bold tracking-widest text-white group relative z-50 glitch-hover scramble-text" data-value="BADEMBA.TRAINING">
+                BADEMBA<span class="text-acid group-hover:animate-pulse">.</span>TRAINING
+            </a>
+
+            <div class="hidden md:flex gap-8 font-sans text-sm uppercase tracking-widest relative z-50">
+                <a href="#programs" class="text-gray-400 hover:text-acid transition-colors link-hover" data-value="Programmes">Programmes</a>
+                <a href="results-fr.html" class="text-gray-400 hover:text-acid transition-colors link-hover" data-value="Résultats">Résultats</a>
+                <a href="#process" class="text-gray-400 hover:text-acid transition-colors link-hover" data-value="Processus">Processus</a>
+                <a href="#faq" class="text-gray-400 hover:text-acid transition-colors link-hover" data-value="FAQ">FAQ</a>
+            </div>
+
+            <div class="flex items-center gap-3 relative z-50">
+                <div class="lang-dropdown hidden md:block">
+                    <button class="flex items-center gap-2 px-3 py-2 text-xs uppercase tracking-widest text-gray-400 hover:text-white transition-colors">
+                        <span>🇫🇷</span> FR
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="lang-dropdown-content">
+                        <a href="index.html" class="lang-option"><span>🇬🇧</span> English</a>
+                        <a href="index-fr.html" class="lang-option"><span>🇫🇷</span> Français</a>
+                        <a href="index-de.html" class="lang-option"><span>🇩🇪</span> Deutsch</a>
+                    </div>
+                </div>
+
+                <a href="#" class="hidden md:block px-4 py-2 text-gray-400 text-xs uppercase tracking-widest hover:text-acid transition-colors">Connexion</a>
+                <a href="#" class="hidden md:block px-4 py-2 border border-acid/50 text-acid text-xs uppercase tracking-widest hover:bg-acid hover:text-black transition-all duration-300 rounded">Inscription</a>
+
+                <a href="consultation-fr.html" class="hidden md:block px-6 py-2 border border-white/20 text-white text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300 rounded-full group overflow-hidden relative">
+                    <span class="relative z-10 group-hover:text-black transition-colors">Réserver</span>
+                    <div class="absolute inset-0 bg-acid translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+                </a>
+
+                <button id="menu-btn" class="md:hidden text-white focus:outline-none">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div id="mobile-menu" class="mobile-menu fixed inset-0 z-40 bg-obsidian flex flex-col justify-center items-center text-center md:hidden">
+        <div class="flex flex-col gap-8 font-display text-2xl font-bold uppercase">
+            <a href="#programs" class="text-white hover:text-acid transition-colors menu-link">Programmes</a>
+            <a href="results-fr.html" class="text-white hover:text-acid transition-colors menu-link">Résultats</a>
+            <a href="#process" class="text-white hover:text-acid transition-colors menu-link">Processus</a>
+            <a href="#faq" class="text-white hover:text-acid transition-colors menu-link">FAQ</a>
+            <div class="border-t border-white/10 pt-8 mt-4 flex flex-col gap-4">
+                <a href="#" class="text-gray-400 hover:text-acid transition-colors text-base">Connexion</a>
+                <a href="#" class="text-acid hover:text-white transition-colors text-base">Inscription</a>
+                <a href="consultation-fr.html" class="bg-acid text-black px-6 py-3 rounded text-base mt-2">Réserver</a>
+            </div>
+            <div class="flex justify-center gap-6 mt-4 text-sm">
+                <a href="index.html" class="text-gray-400 hover:text-white cursor-pointer">🇬🇧 EN</a>
+                <a href="index-fr.html" class="text-white cursor-pointer">🇫🇷 FR</a>
+                <a href="index-de.html" class="text-gray-400 hover:text-white cursor-pointer">🇩🇪 DE</a>
+            </div>
+        </div>
+        <button id="close-menu" class="absolute top-6 right-6 text-white p-2">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+    </div>
+
+    <section class="relative min-h-screen flex flex-col justify-center items-center overflow-hidden pt-20">
+        <div class="absolute inset-0 z-0 overflow-hidden">
+            <div class="absolute inset-0 flex">
+                <div class="flex-1 h-full relative overflow-hidden">
+                    <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover grayscale brightness-[0.4] contrast-110 scale-110" src="video1.mp4"></video>
+                </div>
+                <div class="flex-1 h-full relative overflow-hidden">
+                    <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover grayscale brightness-[0.4] contrast-110 scale-110" src="video2.mp4"></video>
+                </div>
+                <div class="flex-1 h-full relative overflow-hidden">
+                    <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover grayscale brightness-[0.4] contrast-110 scale-110" src="video3.mp4"></video>
+                </div>
+            </div>
+            <div class="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-obsidian to-transparent"></div>
+            <div class="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-obsidian to-transparent"></div>
+        </div>
+
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-acid rounded-full blur-[150px] opacity-5 pointer-events-none z-1"></div>
+
+        <div class="container w-full mx-auto px-6 relative z-10 text-center pointer-events-none overflow-hidden">
+            <div class="overflow-hidden mb-8">
+                <p class="hero-reveal text-acid font-mono text-xs md:text-sm tracking-[0.3em] uppercase inline-block border px-3 py-2 rounded border-acid/20 bg-black/80 backdrop-blur-md pointer-events-auto shadow-lg">
+                    500+ Physiques Transformés
+                </p>
+            </div>
+
+            <div class="relative pointer-events-auto max-w-6xl mx-auto">
+                <h1 class="hero-title text-6xl md:text-8xl lg:text-9xl font-sans font-bold uppercase leading-[0.9] tracking-tighter mb-8 drop-shadow-2xl">
+                    <span class="block title-gradient text-transparent bg-clip-text">Forgez Votre</span>
+                    <span class="block text-acid">Force.</span>
+                </h1>
+            </div>
+
+            <div class="flex flex-col justify-center items-center gap-8 mt-8 max-w-2xl mx-auto pointer-events-auto">
+                <div class="p-6 rounded-xl bg-black/80 backdrop-blur-md border border-white/10 text-center shadow-2xl">
+                    <p class="hero-desc text-gray-300 font-sans text-lg md:text-xl leading-relaxed">
+                        Pas de raccourcis. Pas d'entraînements faciles. Un protocole brut, basé sur la science
+                        <span class="text-white">conçu pour éliminer la graisse et construire du muscle dense en 12 semaines.</span>
+                    </p>
+                </div>
+
+                <div class="hero-cta relative group mt-4">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-acid to-white rounded-sm blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
+                    <a href="consultation-fr.html" class="relative inline-block bg-obsidian border border-white/20 text-white px-10 py-5 font-display font-bold uppercase tracking-wide hover:bg-acid hover:text-black transition-all duration-300 rounded-sm shadow-lg text-sm md:text-base">
+                        Consultation Gratuite
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="w-full bg-acid py-3 overflow-hidden whitespace-nowrap border-y border-black z-20 relative transform -rotate-1 scale-105 origin-left shadow-lg">
+        <div class="marquee-content inline-block text-obsidian font-bold font-mono text-lg tracking-tight">
+            BASÉ SUR LA SCIENCE • CERTIFIÉ NASM • HAUTE INTENSITÉ • GUIDÉ PAR LES DONNÉES • 500+ CLIENTS TRANSFORMÉS • PROTOCOLE 12 SEMAINES • BASÉ SUR LA SCIENCE • CERTIFIÉ NASM • HAUTE INTENSITÉ •
+        </div>
+    </div>
+
+    <section class="py-16 bg-charcoal border-b border-white/5">
+        <div class="container mx-auto px-6">
+            <p class="text-xs font-mono text-gray-500 uppercase tracking-widest text-center mb-10">Certifié & Prouvé</p>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 justify-items-center items-center">
+                <h3 class="text-xl md:text-2xl font-display font-bold text-gray-600 hover:text-white transition-colors duration-300 cursor-default flex items-center gap-2"><span class="text-acid">&#9733;</span> BASÉ SUR LA SCIENCE</h3>
+                <h3 class="text-xl md:text-2xl font-display font-bold text-gray-600 hover:text-white transition-colors duration-300 cursor-default flex items-center gap-2"><span class="text-acid">&#9733;</span> CERTIFIÉ NASM</h3>
+                <h3 class="text-xl md:text-2xl font-display font-bold text-gray-600 hover:text-white transition-colors duration-300 cursor-default flex items-center gap-2"><span class="text-acid">&#9733;</span> HAUTE INTENSITÉ</h3>
+                <h3 class="text-xl md:text-2xl font-display font-bold text-gray-600 hover:text-white transition-colors duration-300 cursor-default flex items-center gap-2"><span class="text-acid">&#9733;</span> GUIDÉ PAR LES DONNÉES</h3>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-32 bg-obsidian relative">
+        <div class="absolute right-0 top-0 w-1/3 h-full bg-gradient-to-l from-acid/5 to-transparent"></div>
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-6xl font-display uppercase font-bold">Les Chiffres <span class="text-acid">Ne Mentent Pas</span></h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 border-t border-white/10 pt-10 mb-16">
+                <div class="stat-card group cursor-default">
+                    <h3 class="text-gray-500 font-mono text-sm mb-2">Physiques Forgés</h3>
+                    <div class="text-5xl md:text-7xl font-display font-bold text-white group-hover:text-acid transition-colors duration-300 counter number-hover" data-target="500">0</div>
+                    <span class="text-xl text-acid font-bold">+</span>
+                    <div class="h-[1px] w-full bg-white/20 mt-4 overflow-hidden"><div class="h-full w-0 group-hover:w-full bg-acid transition-all duration-1000 ease-out"></div></div>
+                </div>
+                <div class="stat-card group cursor-default">
+                    <h3 class="text-gray-500 font-mono text-sm mb-2">Années de Coaching</h3>
+                    <div class="text-5xl md:text-7xl font-display font-bold text-white group-hover:text-acid transition-colors duration-300 counter number-hover" data-target="10">0</div>
+                    <span class="text-xl text-acid font-bold">+</span>
+                    <div class="h-[1px] w-full bg-white/20 mt-4 overflow-hidden"><div class="h-full w-0 group-hover:w-full bg-acid transition-all duration-1000 ease-out"></div></div>
+                </div>
+                <div class="stat-card group cursor-default">
+                    <h3 class="text-gray-500 font-mono text-sm mb-2">Semaines de Protocole</h3>
+                    <div class="text-5xl md:text-7xl font-display font-bold text-white group-hover:text-acid transition-colors duration-300 counter number-hover" data-target="12">0</div>
+                    <span class="text-xl text-acid font-bold">SEM</span>
+                    <div class="h-[1px] w-full bg-white/20 mt-4 overflow-hidden"><div class="h-full w-0 group-hover:w-full bg-acid transition-all duration-1000 ease-out"></div></div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 border-t border-white/10 pt-10">
+                <a href="https://www.facebook.com/Bademba2" target="_blank" class="stat-card group cursor-pointer block hover:bg-white/5 p-6 rounded-xl transition-all duration-300">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-14 h-14 rounded-full bg-[#1877F2] flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                            <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="text-gray-500 font-mono text-xs uppercase tracking-widest">Facebook</h3>
+                            <p class="text-white font-semibold group-hover:text-acid transition-colors">@Bademba2</p>
+                        </div>
+                    </div>
+                    <div class="flex items-baseline gap-2">
+                        <span class="text-4xl md:text-5xl font-display font-bold text-white group-hover:text-acid transition-colors duration-300 scramble-text" data-value="563K">563K</span>
+                        <span class="text-gray-500 text-sm uppercase tracking-widest">Abonnés</span>
+                    </div>
+                    <div class="h-[1px] w-full bg-white/20 mt-4 overflow-hidden"><div class="h-full w-0 group-hover:w-full bg-[#1877F2] transition-all duration-1000 ease-out"></div></div>
+                </a>
+
+                <a href="https://www.instagram.com/bademba_training/" target="_blank" class="stat-card group cursor-pointer block hover:bg-white/5 p-6 rounded-xl transition-all duration-300">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-14 h-14 rounded-full bg-gradient-to-br from-[#833AB4] via-[#FD1D1D] to-[#F77737] flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                            <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="text-gray-500 font-mono text-xs uppercase tracking-widest">Instagram</h3>
+                            <p class="text-white font-semibold group-hover:text-acid transition-colors">@bademba_training</p>
+                        </div>
+                    </div>
+                    <div class="flex items-baseline gap-2">
+                        <span class="text-4xl md:text-5xl font-display font-bold text-white group-hover:text-acid transition-colors duration-300 scramble-text" data-value="692K">692K</span>
+                        <span class="text-gray-500 text-sm uppercase tracking-widest">Abonnés</span>
+                    </div>
+                    <div class="h-[1px] w-full bg-white/20 mt-4 overflow-hidden"><div class="h-full w-0 group-hover:w-full bg-gradient-to-r from-[#833AB4] via-[#FD1D1D] to-[#F77737] transition-all duration-1000 ease-out"></div></div>
+                </a>
+
+                <a href="https://www.tiktok.com/@coach_bademba" target="_blank" class="stat-card group cursor-pointer block hover:bg-white/5 p-6 rounded-xl transition-all duration-300">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-14 h-14 rounded-full bg-black border-2 border-white/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 relative overflow-hidden">
+                            <div class="absolute inset-0 bg-[#00f2ea] opacity-0 group-hover:opacity-20 transition-opacity"></div>
+                            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="text-gray-500 font-mono text-xs uppercase tracking-widest">TikTok</h3>
+                            <p class="text-white font-semibold group-hover:text-acid transition-colors">@coach_bademba</p>
+                        </div>
+                    </div>
+                    <div class="flex items-baseline gap-2">
+                        <span class="text-4xl md:text-5xl font-display font-bold text-white group-hover:text-acid transition-colors duration-300 scramble-text" data-value="638.1K">638.1K</span>
+                        <span class="text-gray-500 text-sm uppercase tracking-widest">Abonnés</span>
+                    </div>
+                    <div class="h-[1px] w-full bg-white/20 mt-4 overflow-hidden"><div class="h-full w-0 group-hover:w-full bg-white transition-all duration-1000 ease-out"></div></div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="programs" class="py-20 bg-charcoal relative">
+        <div class="container mx-auto px-6 mb-20">
+            <h2 class="text-4xl md:text-6xl font-display uppercase font-bold">Plans de <span class="text-acid">Combat</span></h2>
+        </div>
+
+        <div class="container mx-auto px-6 pb-40">
+            <div class="stacking-card bg-obsidian border border-white/10 p-10 md:p-16 rounded-3xl mb-12 transform origin-top transition-transform duration-500 neon-hover">
+                <div class="flex flex-col md:flex-row justify-between gap-10">
+                    <div class="md:w-1/2">
+                        <span class="text-acid font-mono text-xl mb-4 block">NIVEAU DÉBUTANT</span>
+                        <h3 class="text-4xl md:text-5xl font-display font-bold mb-6">Petit Groupe</h3>
+                        <div class="text-5xl font-bold text-white mb-4"><span class="number-hover">199€</span><span class="text-lg font-normal text-gray-500">/mois</span></div>
+                        <ul class="text-gray-400 text-lg leading-relaxed space-y-3">
+                            <li class="flex items-center gap-3"><span class="text-acid">&#10003;</span> Application d'entraînement partagée</li>
+                            <li class="flex items-center gap-3"><span class="text-acid">&#10003;</span> Mises à jour mensuelles du programme</li>
+                            <li class="flex items-center gap-3"><span class="text-acid">&#10003;</span> Responsabilité communautaire</li>
+                        </ul>
+                        <button class="mt-8 text-white border-b border-acid pb-1 hover:text-acid transition-colors">Rejoindre le Groupe</button>
+                    </div>
+                    <div class="md:w-1/2 h-64 md:h-80 rounded-xl relative overflow-hidden card-image-container">
+                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/9c059ff7-8c38-464d-8f88-e40c0828fb57_3840w.jpg?w=800&q=80" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" alt="Entraînement de Groupe">
+                        <div class="absolute inset-0 bg-gradient-to-t from-obsidian to-transparent opacity-80"></div>
+                        <div class="absolute bottom-4 left-4 p-2 bg-black/50 backdrop-blur rounded text-xs font-mono border border-white/20">COMMUNAUTÉ</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stacking-card bg-[#0A0C10] border border-white/10 p-10 md:p-16 rounded-3xl mb-12 transform origin-top transition-transform duration-500 neon-hover">
+                <div class="flex flex-col md:flex-row justify-between gap-10">
+                    <div class="md:w-1/2">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-acid font-mono text-xl block">SYSTÈME COMPLET</span>
+                            <span class="bg-acid text-black text-xs font-bold uppercase px-3 py-1">Plus Populaire</span>
+                        </div>
+                        <h3 class="text-4xl md:text-5xl font-display font-bold mb-6">Coaching en Ligne</h3>
+                        <div class="text-5xl font-bold text-white mb-4"><span class="number-hover">349€</span><span class="text-lg font-normal text-gray-500">/mois</span></div>
+                        <ul class="text-white text-lg leading-relaxed space-y-3 font-semibold">
+                            <li class="flex items-center gap-3"><span class="text-acid">&#10003;</span> Programmes Personnalisés</li>
+                            <li class="flex items-center gap-3"><span class="text-acid">&#10003;</span> Macros & Guide Nutrition</li>
+                            <li class="flex items-center gap-3"><span class="text-acid">&#10003;</span> Appels Vidéo Hebdomadaires</li>
+                        </ul>
+                        <button class="mt-8 bg-acid text-black px-8 py-3 font-bold uppercase tracking-widest hover:bg-lime-400 transition-colors">Commencer</button>
+                    </div>
+                    <div class="md:w-1/2 h-64 md:h-80 rounded-xl relative overflow-hidden card-image-container">
+                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/0b06c971-d75b-40a5-bbe0-a00ab32da317_3840w.jpg?w=800&q=80" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" alt="Coaching en Ligne">
+                        <div class="absolute inset-0 bg-black/40"></div>
+                        <div class="absolute bottom-4 left-4 p-2 bg-black/50 backdrop-blur rounded text-xs font-mono border border-acid/50">ACCÈS PROTOCOLE COMPLET</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stacking-card bg-[#111318] border border-white/10 p-10 md:p-16 rounded-3xl transform origin-top transition-transform duration-500 neon-hover">
+                <div class="flex flex-col md:flex-row justify-between gap-10">
+                    <div class="md:w-1/2">
+                        <span class="text-acid font-mono text-xl mb-4 block">ACCÈS VIP</span>
+                        <h3 class="text-4xl md:text-5xl font-display font-bold mb-6">1:1 Hybride</h3>
+                        <div class="text-5xl font-bold text-white mb-4"><span class="number-hover">799€</span><span class="text-lg font-normal text-gray-500">/mois</span></div>
+                        <ul class="text-gray-400 text-lg leading-relaxed space-y-3">
+                            <li class="flex items-center gap-3"><span class="text-acid">&#10003;</span> Tout le Coaching en Ligne</li>
+                            <li class="flex items-center gap-3"><span class="text-acid">&#10003;</span> 2x Séances Mensuelles en Personne</li>
+                            <li class="flex items-center gap-3"><span class="text-acid">&#10003;</span> Accès Quotidien / Priorité</li>
+                        </ul>
+                        <button class="mt-8 text-white border border-white/20 px-8 py-3 font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-colors">Sur Candidature</button>
+                    </div>
+                    <div class="md:w-1/2 h-64 md:h-80 rounded-xl relative overflow-hidden card-image-container">
+                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/00c68417-ff52-4a54-99a4-61d8cb788683_3840w.jpg?w=800&q=80" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" alt="Entraînement VIP">
+                        <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 p-2 bg-black/50 backdrop-blur rounded text-xs font-mono border border-white/20">NIVEAU ÉLITE</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-20 bg-obsidian">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <h2 class="text-3xl font-display mb-12 text-center">Questions Fréquentes</h2>
+
+            <div class="space-y-4">
+                <div class="group border border-white/10 p-6 rounded-lg hover:bg-white/5 transition-all cursor-pointer overflow-hidden">
+                    <div class="flex justify-between items-center">
+                        <h4 class="text-xl font-bold font-mono text-acid">Faites-vous des plans de repas?</h4>
+                        <span class="text-2xl transform group-hover:rotate-45 transition-transform duration-300">+</span>
+                    </div>
+                    <div class="h-0 group-hover:h-24 transition-all duration-500 ease-in-out overflow-hidden">
+                        <p class="pt-4 text-gray-400">Je fournis des macros et un cadre. Les plans de repas échouent car ils sont restrictifs. Je vous apprends à manger pour vos objectifs afin que vous puissiez le maintenir pour toujours.</p>
+                    </div>
+                </div>
+
+                <div class="group border border-white/10 p-6 rounded-lg hover:bg-white/5 transition-all cursor-pointer overflow-hidden">
+                    <div class="flex justify-between items-center">
+                        <h4 class="text-xl font-bold font-mono text-acid">Salle ou Maison?</h4>
+                        <span class="text-2xl transform group-hover:rotate-45 transition-transform duration-300">+</span>
+                    </div>
+                    <div class="h-0 group-hover:h-24 transition-all duration-500 ease-in-out overflow-hidden">
+                        <p class="pt-4 text-gray-400">Les deux fonctionnent, mais vous avez besoin de résistance. Des haltères et un banc sont le minimum pour la maison. Une salle complète est préférée pour une hypertrophie maximale.</p>
+                    </div>
+                </div>
+
+                <div class="group border border-white/10 p-6 rounded-lg hover:bg-white/5 transition-all cursor-pointer overflow-hidden">
+                    <div class="flex justify-between items-center">
+                        <h4 class="text-xl font-bold font-mono text-acid">Et si j'ai des blessures?</h4>
+                        <span class="text-2xl transform group-hover:rotate-45 transition-transform duration-300">+</span>
+                    </div>
+                    <div class="h-0 group-hover:h-24 transition-all duration-500 ease-in-out overflow-hidden">
+                        <p class="pt-4 text-gray-400">On travaille autour. Le mouvement est souvent le remède. Je modifierai les exercices pour vous assurer de vous entraîner sans douleur tout en réhabilitant.</p>
+                    </div>
+                </div>
+
+                <div class="group border border-white/10 p-6 rounded-lg hover:bg-white/5 transition-all cursor-pointer overflow-hidden">
+                    <div class="flex justify-between items-center">
+                        <h4 class="text-xl font-bold font-mono text-acid">Politique de Remboursement?</h4>
+                        <span class="text-2xl transform group-hover:rotate-45 transition-transform duration-300">+</span>
+                    </div>
+                    <div class="h-0 group-hover:h-24 transition-all duration-500 ease-in-out overflow-hidden">
+                        <p class="pt-4 text-gray-400">Si vous faites le travail et ne voyez pas de résultats, je travaillerai avec vous gratuitement jusqu'à ce que vous en voyiez. Si vous ne faites pas le travail, c'est votre responsabilité.</p>
+                    </div>
+                </div>
+
+                <div class="group border border-white/10 p-6 rounded-lg hover:bg-white/5 transition-all cursor-pointer overflow-hidden">
+                    <div class="flex justify-between items-center">
+                        <h4 class="text-xl font-bold font-mono text-acid">C'est trop hardcore pour moi?</h4>
+                        <span class="text-2xl transform group-hover:rotate-45 transition-transform duration-300">+</span>
+                    </div>
+                    <div class="h-0 group-hover:h-24 transition-all duration-500 ease-in-out overflow-hidden">
+                        <p class="pt-4 text-gray-400">L'intensité est relative. Le système s'adapte à votre niveau — l'effort est non négociable.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-40 relative overflow-hidden flex items-center justify-center bg-charcoal">
+        <div class="absolute inset-0 bg-grid-pattern opacity-5"></div>
+        <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
+            <h2 class="text-[12vw] font-display font-bold text-transparent select-none leading-none tracking-tighter whitespace-nowrap" style="-webkit-text-stroke: 2px rgba(255, 255, 255, 0.1);" id="big-text">COACH BADEMBA</h2>
+        </div>
+
+        <div class="relative w-[300px] h-[400px] md:w-[400px] md:h-[600px] z-20 parallax-card perspective-1000 group">
+            <div class="absolute inset-0 bg-acid blur-[100px] opacity-20 group-hover:opacity-40 transition-opacity duration-700"></div>
+            <img src="coach-bademba.jpg" class="w-full h-full object-cover rounded-lg shadow-2xl brightness-90 contrast-110 group-hover:brightness-100 transition-all duration-700" alt="Coach Bademba">
+            <div class="absolute inset-0 border border-acid/20 rounded-lg"></div>
+            <div class="absolute -right-10 top-20 bg-black/80 backdrop-blur border border-white/10 p-4 rounded text-xs font-mono">
+                <div class="text-gray-400">Certification</div>
+                <div class="text-acid text-xl">NASM CPT</div>
+            </div>
+            <div class="absolute -left-10 bottom-20 bg-black/80 backdrop-blur border border-white/10 p-4 rounded text-xs font-mono">
+                <div class="text-gray-400">Expérience</div>
+                <div class="text-white text-xl"><span class="number-hover">10+</span> Ans</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="results" class="py-20 bg-obsidian">
+        <div class="container mx-auto px-6">
+            <div class="mb-12 text-center">
+                <h2 class="text-4xl md:text-6xl font-display uppercase font-bold">Des Preuves. <span class="text-acid">Pas des Promesses.</span></h2>
+                <p class="text-gray-500 mt-4 font-mono uppercase tracking-widest">Vrais clients. Pas de stéroïdes. Juste du travail.</p>
+            </div>
+
+            <div class="flex flex-col gap-0">
+                <div class="ecosystem-item border-t border-white/10 py-12 flex flex-col md:flex-row justify-between items-start md:items-center group hover:bg-white/5 transition-colors duration-300 px-4 cursor-pointer">
+                    <span class="text-acid font-mono mb-2 md:mb-0">01</span>
+                    <h3 class="text-4xl font-display font-bold text-gray-500 group-hover:text-white transition-colors scramble-text" data-value="Marc T.">Marc T.</h3>
+                    <p class="hidden md:block text-gray-500 w-1/3 text-right group-hover:text-acid">"+18kg au développé couché tout en perdant 5% de graisse corporelle."</p>
+                    <span class="bg-white/10 text-gray-400 text-xs px-3 py-1 font-mono">6 MOIS</span>
+                </div>
+                <div class="ecosystem-item border-t border-white/10 py-12 flex flex-col md:flex-row justify-between items-start md:items-center group hover:bg-white/5 transition-colors duration-300 px-4 cursor-pointer">
+                    <span class="text-acid font-mono mb-2 md:mb-0">02</span>
+                    <h3 class="text-4xl font-display font-bold text-gray-500 group-hover:text-white transition-colors scramble-text" data-value="Sophie J.">Sophie J.</h3>
+                    <p class="hidden md:block text-gray-500 w-1/3 text-right group-hover:text-acid">"Mon mal de dos a disparu. Je me sens enfin forte."</p>
+                    <span class="bg-white/10 text-gray-400 text-xs px-3 py-1 font-mono">16 SEMAINES</span>
+                </div>
+                <div class="ecosystem-item border-t border-b border-white/10 py-12 flex flex-col md:flex-row justify-between items-start md:items-center group hover:bg-white/5 transition-colors duration-300 px-4 cursor-pointer">
+                    <span class="text-acid font-mono mb-2 md:mb-0">03</span>
+                    <h3 class="text-4xl font-display font-bold text-gray-500 group-hover:text-white transition-colors scramble-text" data-value="David R.">David R.</h3>
+                    <p class="hidden md:block text-gray-500 w-1/3 text-right group-hover:text-acid">"De maigre-gras à sculpté. Le programme fonctionne si vous le faites."</p>
+                    <span class="bg-white/10 text-gray-400 text-xs px-3 py-1 font-mono">1 AN</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="process" class="py-32 relative bg-charcoal">
+        <div class="container mx-auto px-6">
+            <h2 class="text-5xl font-display font-bold mb-24 text-center">Le Protocole</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-20 relative">
+                <div class="relative border-l border-white/10 ml-4 md:ml-10">
+                    <div class="mb-40 pl-10 relative roadmap-phase" data-index="0">
+                        <div class="phase-dot absolute -left-[5px] top-2 w-[9px] h-[9px] rounded-full"></div>
+                        <span class="phase-label font-mono text-sm block">ÉTAPE 01</span>
+                        <h4 class="phase-title text-4xl font-bold mt-2">Audit & Objectifs</h4>
+                        <p class="text-gray-400 mt-4 text-lg leading-relaxed">Nous analysons votre mode de vie, vos blessures et votre équipement. Nous fixons des métriques précises.</p>
+                    </div>
+
+                    <div class="mb-40 pl-10 relative roadmap-phase" data-index="1">
+                        <div class="phase-dot absolute -left-[5px] top-2 w-[9px] h-[9px] rounded-full"></div>
+                        <span class="phase-label font-mono text-sm block">ÉTAPE 02</span>
+                        <h4 class="phase-title text-4xl font-bold mt-2">La Construction</h4>
+                        <p class="text-gray-400 mt-4 text-lg leading-relaxed">Je conçois votre bloc d'entraînement personnalisé et votre cadre nutritionnel. Pas de suppositions.</p>
+                    </div>
+
+                    <div class="mb-40 pl-10 relative roadmap-phase" data-index="2">
+                        <div class="phase-dot absolute -left-[5px] top-2 w-[9px] h-[9px] rounded-full"></div>
+                        <span class="phase-label font-mono text-sm block">ÉTAPE 03</span>
+                        <h4 class="phase-title text-4xl font-bold mt-2">Exécution</h4>
+                        <p class="text-gray-400 mt-4 text-lg leading-relaxed">Vous vous entraînez. Vous enregistrez. Vous téléchargez des vidéos de forme. Je critique tout.</p>
+                    </div>
+
+                    <div class="pl-10 relative roadmap-phase" data-index="3">
+                        <div class="phase-dot absolute -left-[5px] top-2 w-[9px] h-[9px] rounded-full"></div>
+                        <span class="phase-label font-mono text-sm block">ÉTAPE 04</span>
+                        <h4 class="phase-title text-4xl font-bold mt-2">Affiner & Évoluer</h4>
+                        <p class="text-gray-400 mt-4 text-lg leading-relaxed">Ajustements hebdomadaires basés sur les données. Nous continuons à augmenter l'intensité.</p>
+                    </div>
+                </div>
+
+                <div class="hidden md:block">
+                    <div class="sticky top-32 h-[500px] w-full rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/9c059ff7-8c38-464d-8f88-e40c0828fb57_3840w.jpg?w=800&q=80" class="roadmap-img active absolute inset-0 w-full h-full object-cover" id="img-0" alt="Audit">
+                        <div class="absolute inset-0 bg-black/30 pointer-events-none"></div>
+                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/0b06c971-d75b-40a5-bbe0-a00ab32da317_3840w.jpg?w=800&q=80" class="roadmap-img absolute inset-0 w-full h-full object-cover" id="img-1" alt="Construction">
+                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/00c68417-ff52-4a54-99a4-61d8cb788683_3840w.jpg?w=800&q=80" class="roadmap-img absolute inset-0 w-full h-full object-cover" id="img-2" alt="Exécution">
+                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/40068c43-c36f-414a-aa59-d3ab6084d1bd_3840w.webp?w=800&q=80" class="roadmap-img absolute inset-0 w-full h-full object-cover" id="img-3" alt="Évolution">
+                        <div class="absolute bottom-5 right-5 bg-black/60 backdrop-blur px-4 py-2 border border-white/10 rounded">
+                            <span class="text-acid font-mono text-xs">PROTOCOLE // ACTIF</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-40 bg-acid relative overflow-hidden flex flex-col items-center justify-center text-center">
+        <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
+        <div class="relative z-10">
+            <h2 class="text-black font-display text-[8vw] leading-none font-bold tracking-tighter hover:skew-x-2 transition-transform duration-300 cursor-pointer">ARRÊTEZ D'ATTENDRE</h2>
+            <h2 class="text-obsidian/70 font-display text-[8vw] leading-none font-bold tracking-tighter mt-2">COMMENCEZ À S'ENTRAÎNER</h2>
+            <p class="text-black/80 text-xl mt-6 max-w-xl mx-auto">Seulement 4 places disponibles pour l'admission de ce mois. Sécurisez votre futur maintenant.</p>
+            <div class="mt-10 flex gap-4 justify-center">
+                <a href="consultation-fr.html" class="bg-black text-acid px-10 py-4 font-bold text-xl hover:scale-110 transition-transform">RÉSERVER CONSULTATION</a>
+                <a href="mailto:contact@bademba.training" class="border-2 border-black text-black px-10 py-4 font-bold text-xl hover:bg-black hover:text-acid transition-colors">M'ÉCRIRE</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-obsidian pt-20 pb-10 border-t border-white/10">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
+                <div class="col-span-1 md:col-span-2">
+                    <h2 class="text-4xl font-display font-bold mb-6 text-white scramble-text cursor-pointer" data-value="BADEMBA.TRAINING">BADEMBA<span class="text-acid">.</span>TRAINING</h2>
+                    <p class="max-w-md text-gray-400">Forger des humains plus forts grâce à la science, la sueur et le fer. Basé à NYC, coaching mondial.</p>
+                    <div class="mt-6 border border-white/10 bg-black/40 p-4">
+                        <div class="flex flex-wrap items-center gap-x-6 gap-y-3">
+                            <span class="text-xs font-semibold uppercase tracking-widest text-white">10+ Ans de Coaching</span>
+                            <span class="text-xs font-semibold uppercase tracking-widest text-gray-300">NASM CPT | CSCS | KB Sport</span>
+                        </div>
+                        <p class="mt-3 text-xs font-mono uppercase tracking-widest text-gray-500">Science. Effort. Exécution.</p>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4 uppercase text-sm tracking-widest text-white">Services</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li class="hover:text-acid cursor-pointer transition-colors">Petit Groupe</li>
+                        <li class="hover:text-acid cursor-pointer transition-colors">Coaching en Ligne</li>
+                        <li class="hover:text-acid cursor-pointer transition-colors">1:1 Hybride</li>
+                        <li class="hover:text-acid cursor-pointer transition-colors">Consultation Gratuite</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4 uppercase text-sm tracking-widest text-white">Connexion</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li><a href="https://www.facebook.com/Bademba2" target="_blank" class="hover:text-acid transition-colors flex items-center gap-2"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg> Facebook</a></li>
+                        <li><a href="https://www.instagram.com/bademba_training/" target="_blank" class="hover:text-acid transition-colors flex items-center gap-2"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg> Instagram</a></li>
+                        <li><a href="https://www.tiktok.com/@coach_bademba" target="_blank" class="hover:text-acid transition-colors flex items-center gap-2"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z"/></svg> TikTok</a></li>
+                        <li><a href="mailto:contact@bademba.training" class="hover:text-acid transition-colors flex items-center gap-2"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg> Email</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="flex justify-between items-center border-t border-white/5 pt-8 text-xs text-gray-600">
+                <p>© 2024 BADEMBA. Tous Droits Réservés.</p>
+                <div class="flex gap-4">
+                    <span class="hover:text-white cursor-pointer transition-colors">Politique de Confidentialité</span>
+                    <span class="hover:text-white cursor-pointer transition-colors">Conditions d'Utilisation</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        const tlEntry = gsap.timeline();
+        tlEntry.from(".hero-title", { y: 100, opacity: 0, duration: 1, stagger: 0.1, ease: "power3.out", delay: 0.2 })
+        .from(".hero-desc", { opacity: 0, y: 20, duration: 1 }, "-=0.6")
+        .from(".hero-cta", { scale: 0.8, opacity: 0, duration: 0.5 }, "-=0.6");
+
+        gsap.utils.toArray('.counter').forEach(counter => {
+            const target = parseFloat(counter.getAttribute('data-target'));
+            const isDecimal = target < 1;
+            gsap.to(counter, { innerText: target, duration: 2, snap: { innerText: isDecimal ? 0.001 : 1 }, scrollTrigger: { trigger: counter, start: "top 85%", } });
+        });
+
+        gsap.fromTo("#big-text", { xPercent: 25 }, { xPercent: -25, ease: "none", scrollTrigger: { trigger: "#big-text", start: "top bottom", end: "bottom top", scrub: 1 } });
+
+        gsap.utils.toArray('.ecosystem-item').forEach((item, i) => {
+            gsap.from(item, { scrollTrigger: { trigger: item, start: "top 90%", }, opacity: 0, x: -50, duration: 0.8, delay: i * 0.1 });
+        });
+
+        gsap.to(".marquee-content", { xPercent: -50, repeat: -1, duration: 20, ease: "linear" });
+
+        const phases = document.querySelectorAll('.roadmap-phase');
+        const images = document.querySelectorAll('.roadmap-img');
+
+        phases.forEach((phase, index) => {
+            ScrollTrigger.create({ trigger: phase, start: "top center", end: "bottom center", onEnter: () => updateRoadmap(index), onEnterBack: () => updateRoadmap(index) });
+        });
+
+        function updateRoadmap(index) {
+            images.forEach(img => img.classList.remove('active'));
+            if(images[index]) { images[index].classList.add('active'); }
+            phases.forEach(p => p.classList.remove('active-phase'));
+            if(phases[index]) { phases[index].classList.add('active-phase'); }
+        }
+
+        updateRoadmap(0);
+
+        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        document.querySelectorAll(".link-hover, .scramble-text").forEach(element => {
+            element.addEventListener("mouseover", event => {
+                let iteration = 0;
+                const originalText = event.target.innerText;
+                const datasetValue = event.target.dataset.value || originalText;
+                let interval = setInterval(() => {
+                    event.target.innerText = datasetValue.split("").map((letter, index) => {
+                        if(index < iteration) { return datasetValue[index]; }
+                        return letters[Math.floor(Math.random() * 26)]
+                    }).join("");
+                    if(iteration >= datasetValue.length){ clearInterval(interval); }
+                    iteration += 1 / 3;
+                }, 30);
+            });
+        });
+
+        const menuBtn = document.getElementById('menu-btn');
+        const closeMenuBtn = document.getElementById('close-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuLinks = document.querySelectorAll('.menu-link');
+
+        function toggleMenu() {
+            mobileMenu.classList.toggle('open');
+            document.body.classList.toggle('overflow-hidden');
+        }
+
+        menuBtn.addEventListener('click', toggleMenu);
+        closeMenuBtn.addEventListener('click', toggleMenu);
+        menuLinks.forEach(link => { link.addEventListener('click', toggleMenu); });
+    </script>
+
+</body></html>

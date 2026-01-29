@@ -1,0 +1,238 @@
+<html lang="de"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beratung Buchen | Bademba Training</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+<script>
+tailwind.config = { theme: { extend: { colors: { 'obsidian': '#050505', 'charcoal': '#0F1115', 'acid': '#CCFF00', 'silver': '#E1E1E1', 'glass': 'rgba(255, 255, 255, 0.05)' }, fontFamily: { 'sans': ['Space Grotesk', 'sans-serif'], 'display': ['Syncopate', 'sans-serif'], }, } } }
+</script>
+<style>
+body { background-color: #050505; color: #E1E1E1; overflow-x: hidden; }
+html { scroll-behavior: smooth; }
+.noise { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9000; opacity: 0.04; background: url('https://grainy-gradients.vercel.app/noise.svg'); }
+.glitch-hover:hover { animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite; }
+@keyframes glitch { 0% { transform: translate(0) } 20% { transform: translate(-2px, 2px) } 40% { transform: translate(-2px, -2px) } 60% { transform: translate(2px, 2px) } 80% { transform: translate(2px, -2px) } 100% { transform: translate(0) } }
+.form-input { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); transition: all 0.3s ease; }
+.form-input:focus { border-color: #CCFF00; box-shadow: 0 0 20px rgba(204, 255, 0, 0.1); outline: none; }
+.form-input::placeholder { color: rgba(255, 255, 255, 0.3); }
+@keyframes float { 0%, 100% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-20px) rotate(2deg); } }
+.float-animation { animation: float 6s ease-in-out infinite; }
+@keyframes pulse-ring { 0% { transform: scale(0.8); opacity: 0; } 50% { opacity: 0.3; } 100% { transform: scale(1.3); opacity: 0; } }
+.pulse-ring { animation: pulse-ring 2s ease-out infinite; }
+@keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+.slide-up { animation: slideUp 0.6s ease-out forwards; }
+.slide-up-delay-1 { animation-delay: 0.1s; opacity: 0; }
+.slide-up-delay-2 { animation-delay: 0.2s; opacity: 0; }
+.slide-up-delay-3 { animation-delay: 0.3s; opacity: 0; }
+.slide-up-delay-4 { animation-delay: 0.4s; opacity: 0; }
+.slide-up-delay-5 { animation-delay: 0.5s; opacity: 0; }
+.slide-up-delay-6 { animation-delay: 0.6s; opacity: 0; }
+.lang-dropdown { position: relative; }
+.lang-dropdown-content { display: none; position: absolute; top: 100%; right: 0; background: rgba(15, 17, 21, 0.95); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; min-width: 150px; z-index: 100; overflow: hidden; }
+.lang-dropdown:hover .lang-dropdown-content { display: block; }
+.lang-option { display: flex; align-items: center; gap: 10px; padding: 10px 16px; cursor: pointer; transition: all 0.2s; }
+.lang-option:hover { background: rgba(204, 255, 0, 0.1); color: #CCFF00; }
+@keyframes checkmark { 0% { stroke-dashoffset: 50; } 100% { stroke-dashoffset: 0; } }
+.success-checkmark { stroke-dasharray: 50; stroke-dashoffset: 50; animation: checkmark 0.5s ease-out forwards; }
+</style>
+</head>
+<body class="antialiased selection:bg-acid selection:text-black min-h-screen">
+
+    <div class="noise"></div>
+
+    <nav class="fixed top-0 w-full z-50 px-6 py-4 backdrop-blur-md bg-obsidian/60 border-b border-white/5 transition-all duration-300">
+        <div class="flex justify-between items-center max-w-7xl mx-auto">
+            <a href="index-de.html" class="text-2xl font-display font-bold tracking-widest text-white group relative z-50 glitch-hover">
+                BADEMBA<span class="text-acid group-hover:animate-pulse">.</span>TRAINING
+            </a>
+
+            <div class="flex items-center gap-3 relative z-50">
+                <div class="lang-dropdown hidden md:block">
+                    <button class="flex items-center gap-2 px-3 py-2 text-xs uppercase tracking-widest text-gray-400 hover:text-white transition-colors">
+                        <span>🇩🇪</span> DE
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="lang-dropdown-content">
+                        <a href="consultation.html" class="lang-option"><span>🇬🇧</span> English</a>
+                        <a href="consultation-fr.html" class="lang-option"><span>🇫🇷</span> Français</a>
+                        <a href="consultation-de.html" class="lang-option"><span>🇩🇪</span> Deutsch</a>
+                    </div>
+                </div>
+
+                <a href="#" class="hidden md:block px-4 py-2 text-gray-400 text-xs uppercase tracking-widest hover:text-acid transition-colors">Anmelden</a>
+                <a href="#" class="hidden md:block px-4 py-2 border border-acid/50 text-acid text-xs uppercase tracking-widest hover:bg-acid hover:text-black transition-all duration-300 rounded">Registrieren</a>
+
+                <a href="index-de.html" class="hidden md:flex items-center gap-2 px-4 py-2 text-gray-400 text-xs uppercase tracking-widest hover:text-white transition-colors">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                    Zurück
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-24 min-h-screen relative">
+        <div class="absolute inset-0 overflow-hidden pointer-events-none">
+            <div class="absolute top-20 -left-40 w-80 h-80 bg-acid rounded-full blur-[150px] opacity-10"></div>
+            <div class="absolute bottom-20 -right-40 w-96 h-96 bg-acid rounded-full blur-[180px] opacity-5"></div>
+        </div>
+
+        <div class="container mx-auto px-6 py-12 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center max-w-7xl mx-auto">
+
+                <div class="relative slide-up">
+                    <div class="relative float-animation">
+                        <div class="absolute -inset-4 bg-acid/20 rounded-3xl blur-2xl"></div>
+                        <div class="relative rounded-2xl overflow-hidden border border-white/10">
+                            <img src="coach-bademba.jpg" alt="Coach Bademba" class="w-full h-[500px] object-cover hover:brightness-110 transition-all duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-transparent"></div>
+                        </div>
+                        <div class="absolute -bottom-6 -right-6 bg-acid text-black p-6 rounded-2xl shadow-2xl">
+                            <div class="text-4xl font-bold">20</div>
+                            <div class="text-xs uppercase tracking-widest">Min Anruf</div>
+                        </div>
+                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 border-2 border-acid/30 rounded-full pulse-ring"></div>
+                    </div>
+
+                    <div class="mt-12 grid grid-cols-3 gap-4">
+                        <div class="bg-white/5 border border-white/10 p-4 rounded-xl text-center slide-up slide-up-delay-1">
+                            <div class="text-2xl font-bold text-acid">Kostenlos</div>
+                            <div class="text-xs text-gray-500 uppercase">Gratis</div>
+                        </div>
+                        <div class="bg-white/5 border border-white/10 p-4 rounded-xl text-center slide-up slide-up-delay-2">
+                            <div class="text-2xl font-bold text-white">1:1</div>
+                            <div class="text-xs text-gray-500 uppercase">Persönlich</div>
+                        </div>
+                        <div class="bg-white/5 border border-white/10 p-4 rounded-xl text-center slide-up slide-up-delay-3">
+                            <div class="text-2xl font-bold text-white">24h</div>
+                            <div class="text-xs text-gray-500 uppercase">Antwort</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slide-up slide-up-delay-2">
+                    <div class="mb-8">
+                        <span class="text-acid font-mono text-sm uppercase tracking-widest">Starte Deine Reise</span>
+                        <h1 class="text-4xl md:text-5xl font-display font-bold uppercase mt-2 tracking-tight">
+                            Buche Deine <span class="text-acid">Kostenlose</span> Beratung
+                        </h1>
+                        <p class="text-gray-400 mt-4 leading-relaxed">
+                            Erzähl uns von deinen Zielen und wir erstellen einen individuellen Plan, um dich dorthin zu bringen. Kein Druck, keine Verpflichtung.
+                        </p>
+                    </div>
+
+                    <form id="consultation-form" class="space-y-6">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="slide-up slide-up-delay-3">
+                                <label class="block text-xs uppercase tracking-widest text-gray-500 mb-2">Vorname *</label>
+                                <input type="text" name="firstName" required class="form-input w-full px-4 py-4 rounded-lg text-white" placeholder="Max">
+                            </div>
+                            <div class="slide-up slide-up-delay-3">
+                                <label class="block text-xs uppercase tracking-widest text-gray-500 mb-2">Nachname *</label>
+                                <input type="text" name="lastName" required class="form-input w-full px-4 py-4 rounded-lg text-white" placeholder="Mustermann">
+                            </div>
+                        </div>
+
+                        <div class="slide-up slide-up-delay-4">
+                            <label class="block text-xs uppercase tracking-widest text-gray-500 mb-2">E-Mail Adresse *</label>
+                            <input type="email" name="email" required class="form-input w-full px-4 py-4 rounded-lg text-white" placeholder="max@beispiel.de">
+                        </div>
+
+                        <div class="slide-up slide-up-delay-4">
+                            <label class="block text-xs uppercase tracking-widest text-gray-500 mb-2">Telefonnummer</label>
+                            <input type="tel" name="phone" class="form-input w-full px-4 py-4 rounded-lg text-white" placeholder="+49 170 0000000">
+                        </div>
+
+                        <div class="slide-up slide-up-delay-5">
+                            <label class="block text-xs uppercase tracking-widest text-gray-500 mb-2">Hauptziel *</label>
+                            <select name="goal" required class="form-input w-full px-4 py-4 rounded-lg text-white appearance-none cursor-pointer">
+                                <option value="" disabled selected>Wähle dein Ziel...</option>
+                                <option value="fat-loss">Fettabbau</option>
+                                <option value="muscle-gain">Muskelaufbau</option>
+                                <option value="recomp">Körperrekomposition</option>
+                                <option value="strength">Kraft steigern</option>
+                                <option value="general">Allgemeine Fitness</option>
+                            </select>
+                        </div>
+
+                        <div class="slide-up slide-up-delay-5">
+                            <label class="block text-xs uppercase tracking-widest text-gray-500 mb-2">Erfahrungslevel</label>
+                            <div class="grid grid-cols-3 gap-3">
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="experience" value="beginner" class="hidden peer">
+                                    <div class="form-input p-4 rounded-lg text-center peer-checked:border-acid peer-checked:bg-acid/10 transition-all">
+                                        <div class="text-sm font-semibold">Anfänger</div>
+                                        <div class="text-xs text-gray-500">0-1 Jahr</div>
+                                    </div>
+                                </label>
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="experience" value="intermediate" class="hidden peer">
+                                    <div class="form-input p-4 rounded-lg text-center peer-checked:border-acid peer-checked:bg-acid/10 transition-all">
+                                        <div class="text-sm font-semibold">Fortgeschritten</div>
+                                        <div class="text-xs text-gray-500">1-3 Jahre</div>
+                                    </div>
+                                </label>
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="experience" value="advanced" class="hidden peer">
+                                    <div class="form-input p-4 rounded-lg text-center peer-checked:border-acid peer-checked:bg-acid/10 transition-all">
+                                        <div class="text-sm font-semibold">Profi</div>
+                                        <div class="text-xs text-gray-500">3+ Jahre</div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="slide-up slide-up-delay-6">
+                            <label class="block text-xs uppercase tracking-widest text-gray-500 mb-2">Erzähl uns mehr (Optional)</label>
+                            <textarea name="message" rows="4" class="form-input w-full px-4 py-4 rounded-lg text-white resize-none" placeholder="Verletzungen, spezifische Ziele oder Fragen..."></textarea>
+                        </div>
+
+                        <div class="slide-up slide-up-delay-6">
+                            <button type="submit" class="w-full py-5 bg-acid text-black font-bold uppercase tracking-widest text-lg rounded-lg hover:bg-lime-400 transition-all duration-300 relative overflow-hidden group">
+                                <span class="relative z-10">Beratung Anfragen</span>
+                                <div class="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+                            </button>
+                        </div>
+
+                        <p class="text-xs text-gray-600 text-center">
+                            Mit dem Absenden akzeptierst du unsere <a href="#" class="text-acid hover:underline">Datenschutzrichtlinie</a> und <a href="#" class="text-acid hover:underline">AGB</a>.
+                        </p>
+                    </form>
+
+                    <div id="success-message" class="hidden text-center py-16">
+                        <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-acid/20 flex items-center justify-center">
+                            <svg class="w-10 h-10 text-acid" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path class="success-checkmark" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-3xl font-display font-bold uppercase mb-4">Du bist dabei!</h3>
+                        <p class="text-gray-400 mb-8">Wir melden uns innerhalb von 24 Stunden, um deine kostenlose Beratung zu planen.</p>
+                        <a href="index-de.html" class="inline-block px-8 py-4 border border-acid text-acid uppercase tracking-widest hover:bg-acid hover:text-black transition-all">
+                            Zurück zur Startseite
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-obsidian py-8 border-t border-white/5 mt-20">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-gray-600 text-sm">© 2024 Bademba Training. Alle Rechte Vorbehalten.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script>
+        document.getElementById('consultation-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            this.style.display = 'none';
+            document.getElementById('success-message').classList.remove('hidden');
+            gsap.from('#success-message', { opacity: 0, y: 30, duration: 0.6, ease: 'power3.out' });
+        });
+
+        gsap.from('nav', { y: -100, opacity: 0, duration: 0.8, ease: 'power3.out' });
+    </script>
+
+</body></html>
