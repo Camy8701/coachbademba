@@ -231,6 +231,7 @@ animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
                         <div class="lang-option" data-lang="en"><span>🇬🇧</span> English</div>
                         <div class="lang-option" data-lang="fr"><span>🇫🇷</span> Français</div>
                         <div class="lang-option" data-lang="de"><span>🇩🇪</span> Deutsch</div>
+                        <div class="lang-option" data-lang="nl"><span>🇳🇱</span> Nederlands</div>
                     </div>
                 </div>
 
@@ -272,6 +273,7 @@ animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
                 <span class="text-gray-400 hover:text-white cursor-pointer">🇬🇧 EN</span>
                 <span class="text-gray-400 hover:text-white cursor-pointer">🇫🇷 FR</span>
                 <span class="text-gray-400 hover:text-white cursor-pointer">🇩🇪 DE</span>
+                <span class="text-gray-400 hover:text-white cursor-pointer">🇳🇱 NL</span>
             </div>
         </div>
         <button id="close-menu" class="absolute top-6 right-6 text-white p-2">
@@ -994,7 +996,7 @@ animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
                 const currentPage = window.location.pathname.split('/').pop() || 'index.html';
 
                 // Remove any existing language suffix
-                let basePage = currentPage.replace(/-fr\.html$/, '.html').replace(/-de\.html$/, '.html');
+                let basePage = currentPage.replace(/-fr\.html$/, '.html').replace(/-de\.html$/, '.html').replace(/-nl\.html$/, '.html');
 
                 // If it's the index page, handle specially
                 if (basePage === '' || basePage === 'index.html') {
