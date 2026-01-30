@@ -582,6 +582,102 @@ html { scroll-behavior: smooth; }
         </div>
     </section>
 
+    <!-- WIE OVERLEEFT HIER -->
+    <section class="py-32 bg-obsidian relative overflow-hidden">
+        <div class="container mx-auto px-6 max-w-7xl">
+            <!-- Header -->
+            <div class="flex items-start gap-4 mb-16">
+                <div class="w-1 h-24 bg-acid"></div>
+                <div>
+                    <h2 class="text-5xl md:text-6xl font-display font-bold text-white tracking-tight">WIE OVERLEEFT HIER</h2>
+                    <p class="text-gray-500 text-sm uppercase tracking-[0.3em] mt-2">Zelf-Kwalificatie Protocol</p>
+                </div>
+            </div>
+
+            <!-- 4 Cards Row -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8" id="survivor-cards">
+                <!-- Card 1: Drukke Professionals -->
+                <div class="survivor-card bg-charcoal/50 border border-white/10 p-6 rounded-lg hover:border-acid/30 transition-all duration-300">
+                    <h3 class="text-white font-bold text-lg uppercase tracking-wide mb-3">Drukke Professionals</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Je hebt maximaal 4 uur per week. Je hebt hoge ROI nodig op je tijd. Geen overbodige oefeningen.</p>
+                </div>
+
+                <!-- Card 2: Recompositie -->
+                <div class="survivor-card bg-charcoal/50 border border-white/10 p-6 rounded-lg hover:border-acid/30 transition-all duration-300">
+                    <h3 class="text-white font-bold text-lg uppercase tracking-wide mb-3">Recompositie</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Je wilt vet verliezen en tegelijkertijd spiermassa opbouwen. Het moeilijkste pad.</p>
+                </div>
+
+                <!-- Card 3: Structuur Zoekers -->
+                <div class="survivor-card bg-charcoal/50 border border-white/10 p-6 rounded-lg hover:border-acid/30 transition-all duration-300">
+                    <h3 class="text-white font-bold text-lg uppercase tracking-wide mb-3">Structuur Zoekers</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Je bent het gissen zat. Je wilt een strijdplan dat precies zegt wat je moet tillen.</p>
+                </div>
+
+                <!-- Card 4: Pijnvrije Kracht -->
+                <div class="survivor-card bg-charcoal/50 border border-white/10 p-6 rounded-lg hover:border-acid/30 transition-all duration-300">
+                    <h3 class="text-white font-bold text-lg uppercase tracking-wide mb-3">Pijnvrije Kracht</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Corrigeer je houding. Maak je rug kogelvrij. Til zwaar zonder blessures.</p>
+                </div>
+            </div>
+
+            <!-- Animated Connector SVG -->
+            <div class="relative h-40 hidden lg:block">
+                <svg viewBox="0 0 1200 160" class="absolute inset-0 w-full h-full" fill="none" preserveAspectRatio="xMidYMid meet">
+                    <defs>
+                        <filter id="glow-survivor" x="-50%" y="-50%" width="200%" height="200%">
+                            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                            <feMerge>
+                                <feMergeNode in="coloredBlur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                    </defs>
+                    <circle cx="150" cy="10" r="5" fill="#CCFF00" filter="url(#glow-survivor)">
+                        <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="450" cy="10" r="5" fill="#CCFF00" filter="url(#glow-survivor)">
+                        <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" begin="0.3s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="750" cy="10" r="5" fill="#CCFF00" filter="url(#glow-survivor)">
+                        <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" begin="0.6s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="1050" cy="10" r="5" fill="#CCFF00" filter="url(#glow-survivor)">
+                        <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" begin="0.9s" repeatCount="indefinite"/>
+                    </circle>
+                    <path d="M150 10 C 150 80, 400 140, 600 150" stroke="#CCFF00" stroke-width="2" stroke-linecap="round" fill="none" style="stroke-dasharray: 500; stroke-dashoffset: 500;">
+                        <animate attributeName="stroke-dashoffset" values="500;0;500" dur="3s" begin="0s" repeatCount="indefinite" calcMode="spline" keySplines="0.42 0 0.58 1; 0.42 0 0.58 1"/>
+                    </path>
+                    <path d="M450 10 C 450 60, 520 120, 600 150" stroke="#CCFF00" stroke-width="2" stroke-linecap="round" fill="none" style="stroke-dasharray: 300; stroke-dashoffset: 300;">
+                        <animate attributeName="stroke-dashoffset" values="300;0;300" dur="3s" begin="0.3s" repeatCount="indefinite" calcMode="spline" keySplines="0.42 0 0.58 1; 0.42 0 0.58 1"/>
+                    </path>
+                    <path d="M750 10 C 750 60, 680 120, 600 150" stroke="#CCFF00" stroke-width="2" stroke-linecap="round" fill="none" style="stroke-dasharray: 300; stroke-dashoffset: 300;">
+                        <animate attributeName="stroke-dashoffset" values="300;0;300" dur="3s" begin="0.6s" repeatCount="indefinite" calcMode="spline" keySplines="0.42 0 0.58 1; 0.42 0 0.58 1"/>
+                    </path>
+                    <path d="M1050 10 C 1050 80, 800 140, 600 150" stroke="#CCFF00" stroke-width="2" stroke-linecap="round" fill="none" style="stroke-dasharray: 500; stroke-dashoffset: 500;">
+                        <animate attributeName="stroke-dashoffset" values="500;0;500" dur="3s" begin="0.9s" repeatCount="indefinite" calcMode="spline" keySplines="0.42 0 0.58 1; 0.42 0 0.58 1"/>
+                    </path>
+                    <circle cx="600" cy="150" r="8" fill="#CCFF00" filter="url(#glow-survivor)">
+                        <animate attributeName="r" values="6;10;6" dur="2s" repeatCount="indefinite"/>
+                    </circle>
+                </svg>
+            </div>
+
+            <!-- Mobile connector -->
+            <div class="h-16 flex items-center justify-center lg:hidden">
+                <div class="w-0.5 h-full bg-gradient-to-b from-acid to-acid/20"></div>
+            </div>
+
+            <!-- Card 5: NIET VOOR EXCUSES -->
+            <div class="max-w-3xl mx-auto">
+                <div class="bg-charcoal/50 border border-white/10 p-8 rounded-lg text-center hover:border-acid/50 transition-all duration-300" style="box-shadow: 0 0 40px rgba(204, 255, 0, 0.1);">
+                    <h3 class="text-white font-bold text-2xl uppercase tracking-wide mb-3">Niet Voor Excuses</h3>
+                    <p class="text-gray-400 text-base leading-relaxed">Als je een cheerleader nodig hebt, zoek dan ergens anders. Wij bouwen discipline.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="py-40 bg-acid relative overflow-hidden flex flex-col items-center justify-center text-center">
         <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
         <div class="relative z-10">
