@@ -622,45 +622,49 @@ html { scroll-behavior: smooth; }
             </div>
 
             <!-- Animated Connector SVG -->
-            <div class="relative h-40 hidden lg:block">
-                <svg viewBox="0 0 1200 160" class="absolute inset-0 w-full h-full" fill="none" preserveAspectRatio="xMidYMid meet">
+            <div class="relative h-64 hidden lg:block">
+                <svg viewBox="0 0 900 360" class="absolute inset-0 w-full h-full" fill="none">
                     <defs>
-                        <filter id="glow-survivor" x="-50%" y="-50%" width="200%" height="200%">
-                            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                        <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+                            <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
                             <feMerge>
                                 <feMergeNode in="coloredBlur"/>
                                 <feMergeNode in="SourceGraphic"/>
                             </feMerge>
                         </filter>
                     </defs>
-                    <circle cx="150" cy="10" r="5" fill="#CCFF00" filter="url(#glow-survivor)">
+                    <circle cx="112" cy="30" r="4" fill="#CCFF00" filter="url(#glow)">
                         <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite"/>
                     </circle>
-                    <circle cx="450" cy="10" r="5" fill="#CCFF00" filter="url(#glow-survivor)">
-                        <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" begin="0.3s" repeatCount="indefinite"/>
+                    <circle cx="337" cy="30" r="4" fill="#CCFF00" filter="url(#glow)">
+                        <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" begin="0.25s" repeatCount="indefinite"/>
                     </circle>
-                    <circle cx="750" cy="10" r="5" fill="#CCFF00" filter="url(#glow-survivor)">
-                        <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" begin="0.6s" repeatCount="indefinite"/>
+                    <circle cx="562" cy="30" r="4" fill="#CCFF00" filter="url(#glow)">
+                        <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" begin="0.5s" repeatCount="indefinite"/>
                     </circle>
-                    <circle cx="1050" cy="10" r="5" fill="#CCFF00" filter="url(#glow-survivor)">
-                        <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" begin="0.9s" repeatCount="indefinite"/>
+                    <circle cx="787" cy="30" r="4" fill="#CCFF00" filter="url(#glow)">
+                        <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" begin="0.75s" repeatCount="indefinite"/>
                     </circle>
-                    <path d="M150 10 C 150 80, 400 140, 600 150" stroke="#CCFF00" stroke-width="2" stroke-linecap="round" fill="none" style="stroke-dasharray: 500; stroke-dashoffset: 500;">
-                        <animate attributeName="stroke-dashoffset" values="500;0;500" dur="3s" begin="0s" repeatCount="indefinite" calcMode="spline" keySplines="0.42 0 0.58 1; 0.42 0 0.58 1"/>
+                    <path d="M450 300 C 450 200, 280 120, 112 30" stroke="#CCFF00" stroke-width="2" stroke-linecap="round" fill="none" style="stroke-dasharray: 580; stroke-dashoffset: 580;">
+                        <animate attributeName="stroke-dashoffset" values="580;0;580" dur="3s" begin="0s" repeatCount="indefinite" calcMode="spline" keySplines="0.42 0 0.58 1; 0.42 0 0.58 1"/>
                     </path>
-                    <path d="M450 10 C 450 60, 520 120, 600 150" stroke="#CCFF00" stroke-width="2" stroke-linecap="round" fill="none" style="stroke-dasharray: 300; stroke-dashoffset: 300;">
-                        <animate attributeName="stroke-dashoffset" values="300;0;300" dur="3s" begin="0.3s" repeatCount="indefinite" calcMode="spline" keySplines="0.42 0 0.58 1; 0.42 0 0.58 1"/>
+                    <path d="M450 300 C 450 180, 390 100, 337 30" stroke="#CCFF00" stroke-width="2" stroke-linecap="round" fill="none" style="stroke-dasharray: 420; stroke-dashoffset: 420;">
+                        <animate attributeName="stroke-dashoffset" values="420;0;420" dur="3s" begin="0.25s" repeatCount="indefinite" calcMode="spline" keySplines="0.42 0 0.58 1; 0.42 0 0.58 1"/>
                     </path>
-                    <path d="M750 10 C 750 60, 680 120, 600 150" stroke="#CCFF00" stroke-width="2" stroke-linecap="round" fill="none" style="stroke-dasharray: 300; stroke-dashoffset: 300;">
-                        <animate attributeName="stroke-dashoffset" values="300;0;300" dur="3s" begin="0.6s" repeatCount="indefinite" calcMode="spline" keySplines="0.42 0 0.58 1; 0.42 0 0.58 1"/>
+                    <path d="M450 300 C 450 180, 510 100, 562 30" stroke="#CCFF00" stroke-width="2" stroke-linecap="round" fill="none" style="stroke-dasharray: 420; stroke-dashoffset: 420;">
+                        <animate attributeName="stroke-dashoffset" values="420;0;420" dur="3s" begin="0.5s" repeatCount="indefinite" calcMode="spline" keySplines="0.42 0 0.58 1; 0.42 0 0.58 1"/>
                     </path>
-                    <path d="M1050 10 C 1050 80, 800 140, 600 150" stroke="#CCFF00" stroke-width="2" stroke-linecap="round" fill="none" style="stroke-dasharray: 500; stroke-dashoffset: 500;">
-                        <animate attributeName="stroke-dashoffset" values="500;0;500" dur="3s" begin="0.9s" repeatCount="indefinite" calcMode="spline" keySplines="0.42 0 0.58 1; 0.42 0 0.58 1"/>
+                    <path d="M450 300 C 450 200, 620 120, 787 30" stroke="#CCFF00" stroke-width="2" stroke-linecap="round" fill="none" style="stroke-dasharray: 580; stroke-dashoffset: 580;">
+                        <animate attributeName="stroke-dashoffset" values="580;0;580" dur="3s" begin="0.75s" repeatCount="indefinite" calcMode="spline" keySplines="0.42 0 0.58 1; 0.42 0 0.58 1"/>
                     </path>
-                    <circle cx="600" cy="150" r="8" fill="#CCFF00" filter="url(#glow-survivor)">
-                        <animate attributeName="r" values="6;10;6" dur="2s" repeatCount="indefinite"/>
-                    </circle>
                 </svg>
+                <div class="absolute bottom-2 left-1/2 -translate-x-1/2">
+                    <span class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-acid/20 ring-2 ring-acid/40" style="box-shadow: 0 0 20px rgba(204,255,0,0.6), 0 0 40px rgba(204,255,0,0.3);">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 text-acid">
+                            <path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/>
+                        </svg>
+                    </span>
+                </div>
             </div>
 
             <!-- Mobile connector -->
