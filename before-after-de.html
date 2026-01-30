@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vorher & Nachher | Bademba Training</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { theme: { extend: { colors: { 'obsidian': '#050505', 'charcoal': '#0F1115', 'acid': '#CCFF00', 'silver': '#E1E1E1' }, fontFamily: { 'sans': ['Space Grotesk', 'sans-serif'], 'display': ['Syncopate', 'sans-serif'] } } } }
+    </script>
+    <style>
+        body { background-color: #050505; color: #E1E1E1; overflow-x: hidden; }
+        html { scroll-behavior: smooth; }
+        .noise { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9000; opacity: 0.04; background: url('https://grainy-gradients.vercel.app/noise.svg'); }
+        .glitch-hover:hover { animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite; }
+        @keyframes glitch { 0% { transform: translate(0) } 20% { transform: translate(-2px, 2px) } 40% { transform: translate(-2px, -2px) } 60% { transform: translate(2px, 2px) } 80% { transform: translate(2px, -2px) } 100% { transform: translate(0) } }
+        .transform-card { transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+        .transform-card:hover { transform: translateY(-10px); box-shadow: 0 25px 50px -12px rgba(204, 255, 0, 0.2); }
+        .transform-card:hover .transform-overlay { opacity: 1; }
+        .transform-overlay { transition: opacity 0.4s ease; }
+        .bg-grid { background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 50px 50px; }
+        .lang-dropdown { position: relative; }
+        .lang-dropdown-content { display: none; position: absolute; top: 100%; right: 0; background: rgba(15, 17, 21, 0.95); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; min-width: 150px; z-index: 100; overflow: hidden; }
+        .lang-dropdown:hover .lang-dropdown-content { display: block; }
+        .lang-option { display: flex; align-items: center; gap: 10px; padding: 10px 16px; cursor: pointer; transition: all 0.2s; }
+        .lang-option:hover { background: rgba(204, 255, 0, 0.1); color: #CCFF00; }
+    </style>
+</head>
+<body class="antialiased selection:bg-acid selection:text-black min-h-screen">
+    <div class="noise"></div>
+
+    <nav class="fixed top-0 w-full z-50 px-6 py-4 backdrop-blur-md bg-obsidian/60 border-b border-white/5">
+        <div class="flex justify-between items-center max-w-7xl mx-auto">
+            <a href="index-de.html" class="text-2xl font-display font-bold tracking-widest text-white group glitch-hover">BADEMBA<span class="text-acid">.</span>TRAINING</a>
+            <div class="hidden md:flex gap-8 font-sans text-sm uppercase tracking-widest">
+                <a href="index-de.html#programs" class="text-gray-400 hover:text-acid transition-colors">Programme</a>
+                <a href="results-de.html" class="text-acid transition-colors">Ergebnisse</a>
+                <a href="index-de.html#process" class="text-gray-400 hover:text-acid transition-colors">Prozess</a>
+                <a href="index-de.html#faq" class="text-gray-400 hover:text-acid transition-colors">FAQ</a>
+            </div>
+            <div class="flex items-center gap-3">
+                <div class="lang-dropdown hidden md:block">
+                    <button class="flex items-center gap-2 px-3 py-2 text-xs uppercase tracking-widest text-gray-400 hover:text-white transition-colors"><span>🇩🇪</span> DE<svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+                    <div class="lang-dropdown-content">
+                        <div class="lang-option" data-lang="en"><span>🇬🇧</span> English</div>
+                        <div class="lang-option" data-lang="fr"><span>🇫🇷</span> Français</div>
+                        <div class="lang-option" data-lang="de"><span>🇩🇪</span> Deutsch</div>
+                        <div class="lang-option" data-lang="nl"><span>🇳🇱</span> Nederlands</div>
+                    </div>
+                </div>
+                <a href="consultation-de.html" class="hidden md:block px-6 py-2 border border-white/20 text-white text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300 rounded-full">Buchen</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="pt-32 pb-16 relative bg-grid">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-acid rounded-full blur-[200px] opacity-5 pointer-events-none"></div>
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="flex items-center gap-2 text-sm text-gray-500 mb-8">
+                <a href="index-de.html" class="hover:text-acid transition-colors">Startseite</a><span>/</span>
+                <a href="results-de.html" class="hover:text-acid transition-colors">Ergebnisse</a><span>/</span>
+                <span class="text-white">Vorher & Nachher</span>
+            </div>
+            <div class="max-w-4xl mb-16">
+                <h1 class="text-5xl md:text-7xl font-display font-bold uppercase leading-[0.9] mb-6"><span class="text-white">Vorher</span> <span class="text-acid">&</span> <span class="text-white">Nachher</span></h1>
+                <p class="text-xl text-gray-400 max-w-2xl">Echte Transformationen von echten Kunden. Kein Photoshop. Keine Filter. Nur Hingabe zum Protokoll.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-12 relative">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="transform-card bg-charcoal border border-white/10 rounded-2xl overflow-hidden group">
+                    <div class="relative"><img src="transform1.jpg" alt="Transformation 1" class="w-full h-80 object-cover"><div class="transform-overlay absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/50 to-transparent opacity-0 flex items-end p-6"><div><span class="text-acid font-mono text-xs uppercase tracking-widest">Muskelaufbau</span><p class="text-white font-semibold mt-1">Transformation Muskelmasse</p></div></div></div>
+                    <div class="p-6"><div class="flex justify-between items-center"><span class="text-acid font-mono text-sm">12 WOCHEN</span><span class="bg-acid/10 text-acid text-xs px-3 py-1 rounded-full">Muskel</span></div></div>
+                </div>
+                <div class="transform-card bg-charcoal border border-white/10 rounded-2xl overflow-hidden group">
+                    <div class="relative"><img src="transform2.jpg" alt="Transformation 2" class="w-full h-80 object-cover"><div class="transform-overlay absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/50 to-transparent opacity-0 flex items-end p-6"><div><span class="text-acid font-mono text-xs uppercase tracking-widest">Rekomposition</span><p class="text-white font-semibold mt-1">Straff und definiert</p></div></div></div>
+                    <div class="p-6"><div class="flex justify-between items-center"><span class="text-acid font-mono text-sm">16 WOCHEN</span><span class="bg-acid/10 text-acid text-xs px-3 py-1 rounded-full">Rekomp</span></div></div>
+                </div>
+                <div class="transform-card bg-charcoal border border-white/10 rounded-2xl overflow-hidden group">
+                    <div class="relative"><img src="transform3.jpg" alt="Transformation 3" class="w-full h-80 object-cover"><div class="transform-overlay absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/50 to-transparent opacity-0 flex items-end p-6"><div><span class="text-acid font-mono text-xs uppercase tracking-widest">Fettabbau</span><p class="text-white font-semibold mt-1">Komplette Transformation</p></div></div></div>
+                    <div class="p-6"><div class="flex justify-between items-center"><span class="text-acid font-mono text-sm">6 MONATE</span><span class="bg-acid/10 text-acid text-xs px-3 py-1 rounded-full">Fettabbau</span></div></div>
+                </div>
+                <div class="transform-card bg-charcoal border border-white/10 rounded-2xl overflow-hidden group">
+                    <div class="relative"><img src="transform4.jpg" alt="Transformation 4" class="w-full h-80 object-cover"><div class="transform-overlay absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/50 to-transparent opacity-0 flex items-end p-6"><div><span class="text-acid font-mono text-xs uppercase tracking-widest">Senior Fitness</span><p class="text-white font-semibold mt-1">Alter ist nur eine Zahl</p></div></div></div>
+                    <div class="p-6"><div class="flex justify-between items-center"><span class="text-acid font-mono text-sm">20 WOCHEN</span><span class="bg-acid/10 text-acid text-xs px-3 py-1 rounded-full">Fettabbau</span></div></div>
+                </div>
+                <div class="transform-card bg-charcoal border border-white/10 rounded-2xl overflow-hidden group">
+                    <div class="relative"><img src="transform5.jpg" alt="Transformation 5" class="w-full h-80 object-cover"><div class="transform-overlay absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/50 to-transparent opacity-0 flex items-end p-6"><div><span class="text-acid font-mono text-xs uppercase tracking-widest">Gesäßmuskulatur</span><p class="text-white font-semibold mt-1">Geformt & stark</p></div></div></div>
+                    <div class="p-6"><div class="flex justify-between items-center"><span class="text-acid font-mono text-sm">12 WOCHEN</span><span class="bg-acid/10 text-acid text-xs px-3 py-1 rounded-full">Muskel</span></div></div>
+                </div>
+                <div class="transform-card bg-charcoal border border-white/10 rounded-2xl overflow-hidden group">
+                    <div class="relative"><img src="transform6.jpg" alt="Transformation 6" class="w-full h-80 object-cover"><div class="transform-overlay absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/50 to-transparent opacity-0 flex items-end p-6"><div><span class="text-acid font-mono text-xs uppercase tracking-widest">Gewichtsverlust</span><p class="text-white font-semibold mt-1">Dramatische Ergebnisse</p></div></div></div>
+                    <div class="p-6"><div class="flex justify-between items-center"><span class="text-acid font-mono text-sm">8 MONATE</span><span class="bg-acid/10 text-acid text-xs px-3 py-1 rounded-full">Fettabbau</span></div></div>
+                </div>
+                <div class="transform-card bg-charcoal border border-white/10 rounded-2xl overflow-hidden group">
+                    <div class="relative"><img src="transform7.jpg" alt="Transformation 7" class="w-full h-80 object-cover"><div class="transform-overlay absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/50 to-transparent opacity-0 flex items-end p-6"><div><span class="text-acid font-mono text-xs uppercase tracking-widest">Lean Gains</span><p class="text-white font-semibold mt-1">Haltung & Muskel</p></div></div></div>
+                    <div class="p-6"><div class="flex justify-between items-center"><span class="text-acid font-mono text-sm">16 WOCHEN</span><span class="bg-acid/10 text-acid text-xs px-3 py-1 rounded-full">Rekomp</span></div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 border-t border-white/5">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl md:text-5xl font-display font-bold mb-6">Bereit der <span class="text-acid">Nächste</span> zu sein?</h2>
+            <p class="text-gray-400 text-lg mb-10 max-w-xl mx-auto">Jede Transformation beginnt mit einer einzigen Entscheidung. Buche deine kostenlose Beratung.</p>
+            <a href="consultation-de.html" class="inline-block bg-acid text-black px-12 py-5 font-bold uppercase tracking-widest text-lg hover:bg-lime-400 transition-colors">Kostenlos Buchen</a>
+        </div>
+    </section>
+
+    <footer class="bg-obsidian py-10 border-t border-white/10">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <a href="index-de.html" class="text-xl font-display font-bold text-white">BADEMBA<span class="text-acid">.</span>TRAINING</a>
+                <div class="flex gap-6">
+                    <a href="https://www.facebook.com/Bademba2" target="_blank" class="text-gray-400 hover:text-acid transition-colors"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+                    <a href="https://www.instagram.com/bademba_training/" target="_blank" class="text-gray-400 hover:text-acid transition-colors"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+                    <a href="https://www.tiktok.com/@coach_bademba" target="_blank" class="text-gray-400 hover:text-acid transition-colors"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z"/></svg></a>
+                </div>
+                <p class="text-xs text-gray-600">© 2024 BADEMBA. Alle Rechte vorbehalten.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.lang-option').forEach(option => {
+            option.addEventListener('click', function() {
+                const lang = this.dataset.lang;
+                const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+                let basePage = currentPage.replace(/-fr\.html$/, '.html').replace(/-de\.html$/, '.html').replace(/-nl\.html$/, '.html');
+                if (basePage === '' || basePage === 'index.html') basePage = 'index.html';
+                let newPage = lang === 'en' ? basePage : basePage.replace('.html', `-${lang}.html`);
+                window.location.href = newPage;
+            });
+        });
+    </script>
+</body>
+</html>
