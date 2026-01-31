@@ -73,6 +73,13 @@ html { scroll-behavior: smooth; }
 80% { transform: translate(2px, -2px) }
 100% { transform: translate(0) }
 }
+.testimonials-mask { mask-image: linear-gradient(to bottom, transparent, black 8%, black 92%, transparent); -webkit-mask-image: linear-gradient(to bottom, transparent, black 8%, black 92%, transparent); }
+@keyframes scrollUp { 0% { transform: translateY(0); } 100% { transform: translateY(-50%); } }
+.testimonial-column { overflow: hidden; }
+.testimonial-track { animation: scrollUp var(--scroll-speed, 25s) linear infinite; }
+.testimonial-column:hover .testimonial-track { animation-play-state: paused; }
+.testimonial-card { transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; }
+.testimonial-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.4); }
 </style>
 </head>
 <body class="antialiased selection:bg-acid selection:text-black">
@@ -682,6 +689,101 @@ html { scroll-behavior: smooth; }
         </div>
     </section>
 
+    <!-- TESTIMONIALS SECTIE -->
+    <section id="testimonials" class="py-32 bg-charcoal relative overflow-hidden">
+        <div class="container mx-auto px-6 max-w-7xl relative z-10">
+            <div class="flex flex-col items-center justify-center max-w-xl mx-auto mb-16 text-center">
+                <div class="inline-block border border-acid/30 py-1.5 px-5 rounded-full text-xs font-mono tracking-[0.2em] uppercase text-acid bg-acid/5 mb-6">
+                    Klantenfeedback
+                </div>
+                <h2 class="text-4xl md:text-5xl font-display font-bold tracking-tight text-white">
+                    STEMMEN UIT DE <span class="text-acid">LOOPGRAVEN</span>
+                </h2>
+                <p class="text-gray-500 mt-5 text-lg leading-relaxed">
+                    Echte resultaten van echte mensen die gestopt zijn met excuses maken.
+                </p>
+            </div>
+
+            <div class="flex justify-center gap-6 testimonials-mask max-h-[700px] overflow-hidden">
+                <div class="testimonial-column w-full max-w-xs" data-speed="25">
+                    <div class="testimonial-track flex flex-col gap-6 pb-6">
+                        <div class="testimonial-card bg-obsidian border border-white/10 p-8 rounded-2xl hover:border-acid/30 transition-all duration-300 group">
+                            <p class="text-gray-400 leading-relaxed mb-6">"15kg kwijt in 12 weken. Het voedingsframework klopte eindelijk—geen jojo-diëten meer. Coach Bademba draait er niet omheen."</p>
+                            <div class="flex items-center gap-4">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150&h=150" alt="Marcus D." class="w-12 h-12 rounded-full object-cover ring-2 ring-white/10 group-hover:ring-acid/30 transition-all">
+                                <div><cite class="font-bold text-white not-italic block">Marcus D.</cite><span class="text-xs text-gray-500 font-mono uppercase tracking-wider">12-Weken Protocol</span></div>
+                            </div>
+                        </div>
+                        <div class="testimonial-card bg-obsidian border border-white/10 p-8 rounded-2xl hover:border-acid/30 transition-all duration-300 group">
+                            <p class="text-gray-400 leading-relaxed mb-6">"Eindelijk mijn rugpijn opgelost na jaren chiropractorbezoeken. De bewegingscorrecties waren een game-changer."</p>
+                            <div class="flex items-center gap-4">
+                                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150&h=150" alt="Elena K." class="w-12 h-12 rounded-full object-cover ring-2 ring-white/10 group-hover:ring-acid/30 transition-all">
+                                <div><cite class="font-bold text-white not-italic block">Elena K.</cite><span class="text-xs text-gray-500 font-mono uppercase tracking-wider">Pijnvrije Kracht</span></div>
+                            </div>
+                        </div>
+                        <div class="testimonial-card bg-obsidian border border-white/10 p-8 rounded-2xl hover:border-acid/30 transition-all duration-300 group">
+                            <p class="text-gray-400 leading-relaxed mb-6">"Ik ben chirurg zonder vrije tijd. 4 sessies per week, elk 45 min. Vet verloren, spieren opgebouwd. De efficiëntie is ongelooflijk."</p>
+                            <div class="flex items-center gap-4">
+                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=150&h=150" alt="Dr. Ahmed R." class="w-12 h-12 rounded-full object-cover ring-2 ring-white/10 group-hover:ring-acid/30 transition-all">
+                                <div><cite class="font-bold text-white not-italic block">Dr. Ahmed R.</cite><span class="text-xs text-gray-500 font-mono uppercase tracking-wider">Drukke Professional</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-column hidden md:block w-full max-w-xs" data-speed="30">
+                    <div class="testimonial-track flex flex-col gap-6 pb-6">
+                        <div class="testimonial-card bg-obsidian border border-white/10 p-8 rounded-2xl hover:border-acid/30 transition-all duration-300 group">
+                            <p class="text-gray-400 leading-relaxed mb-6">"Van skinny-fat naar echt atletisch. Het progressieve overbelastingssysteem liet me elke week meer gewicht tillen."</p>
+                            <div class="flex items-center gap-4">
+                                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=150&h=150" alt="James T." class="w-12 h-12 rounded-full object-cover ring-2 ring-white/10 group-hover:ring-acid/30 transition-all">
+                                <div><cite class="font-bold text-white not-italic block">James T.</cite><span class="text-xs text-gray-500 font-mono uppercase tracking-wider">Recompositie</span></div>
+                            </div>
+                        </div>
+                        <div class="testimonial-card bg-obsidian border border-white/10 p-8 rounded-2xl hover:border-acid/30 transition-all duration-300 group">
+                            <p class="text-gray-400 leading-relaxed mb-6">"De wekelijkse check-ins hielden me verantwoordelijk. Geen 'ik begin maandag' meer. De coach doorzag elke excuus."</p>
+                            <div class="flex items-center gap-4">
+                                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=150&h=150" alt="Sophie L." class="w-12 h-12 rounded-full object-cover ring-2 ring-white/10 group-hover:ring-acid/30 transition-all">
+                                <div><cite class="font-bold text-white not-italic block">Sophie L.</cite><span class="text-xs text-gray-500 font-mono uppercase tracking-wider">Online Coaching</span></div>
+                            </div>
+                        </div>
+                        <div class="testimonial-card bg-obsidian border border-white/10 p-8 rounded-2xl hover:border-acid/30 transition-all duration-300 group">
+                            <p class="text-gray-400 leading-relaxed mb-6">"Lichaam na zwangerschap getransformeerd. Diastase opgelost, core-kracht herbouwd. Sterker dan voor de kinderen."</p>
+                            <div class="flex items-center gap-4">
+                                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=150&h=150" alt="Maria S." class="w-12 h-12 rounded-full object-cover ring-2 ring-white/10 group-hover:ring-acid/30 transition-all">
+                                <div><cite class="font-bold text-white not-italic block">Maria S.</cite><span class="text-xs text-gray-500 font-mono uppercase tracking-wider">Postnataal Programma</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-column hidden lg:block w-full max-w-xs" data-speed="22">
+                    <div class="testimonial-track flex flex-col gap-6 pb-6">
+                        <div class="testimonial-card bg-obsidian border border-white/10 p-8 rounded-2xl hover:border-acid/30 transition-all duration-300 group">
+                            <p class="text-gray-400 leading-relaxed mb-6">"Op 52-jarige leeftijd til ik meer dan op mijn 30e. Het leeftijdsexcuus is dood. Bademba bewees dat ik ongelijk had."</p>
+                            <div class="flex items-center gap-4">
+                                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=150&h=150" alt="Robert M." class="w-12 h-12 rounded-full object-cover ring-2 ring-white/10 group-hover:ring-acid/30 transition-all">
+                                <div><cite class="font-bold text-white not-italic block">Robert M.</cite><span class="text-xs text-gray-500 font-mono uppercase tracking-wider">Masters Atleet</span></div>
+                            </div>
+                        </div>
+                        <div class="testimonial-card bg-obsidian border border-white/10 p-8 rounded-2xl hover:border-acid/30 transition-all duration-300 group">
+                            <p class="text-gray-400 leading-relaxed mb-6">"Van 28% naar 14% lichaamsvet. Het macro-framework was simpel—ik volgde gewoon de cijfers."</p>
+                            <div class="flex items-center gap-4">
+                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150&h=150" alt="Priya N." class="w-12 h-12 rounded-full object-cover ring-2 ring-white/10 group-hover:ring-acid/30 transition-all">
+                                <div><cite class="font-bold text-white not-italic block">Priya N.</cite><span class="text-xs text-gray-500 font-mono uppercase tracking-wider">Vetverlies Focus</span></div>
+                            </div>
+                        </div>
+                        <div class="testimonial-card bg-obsidian border border-white/10 p-8 rounded-2xl hover:border-acid/30 transition-all duration-300 group">
+                            <p class="text-gray-400 leading-relaxed mb-6">"Van nooit een halter aangeraakt tot 120kg deadlift. De form-video's waren de sleutel—elke rep geanalyseerd."</p>
+                            <div class="flex items-center gap-4">
+                                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=150&h=150" alt="Lisa C." class="w-12 h-12 rounded-full object-cover ring-2 ring-white/10 group-hover:ring-acid/30 transition-all">
+                                <div><cite class="font-bold text-white not-italic block">Lisa C.</cite><span class="text-xs text-gray-500 font-mono uppercase tracking-wider">Beginner Tot Sterk</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="py-40 bg-acid relative overflow-hidden flex flex-col items-center justify-center text-center">
         <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
         <div class="relative z-10">
@@ -813,6 +915,14 @@ html { scroll-behavior: smooth; }
         menuBtn.addEventListener('click', toggleMenu);
         closeMenuBtn.addEventListener('click', toggleMenu);
         menuLinks.forEach(link => { link.addEventListener('click', toggleMenu); });
+
+        // Testimonials Infinite Scroll Setup
+        document.querySelectorAll('.testimonial-column').forEach(column => {
+            const track = column.querySelector('.testimonial-track');
+            const speed = column.getAttribute('data-speed') || 25;
+            track.innerHTML += track.innerHTML;
+            track.style.setProperty('--scroll-speed', speed + 's');
+        });
 
         // Language Switching
         document.querySelectorAll('.lang-option').forEach(option => {

@@ -198,6 +198,31 @@ animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
 80% { transform: translate(2px, -2px) }
 100% { transform: translate(0) }
 }
+/* Testimonials Scrolling Animation */
+.testimonials-mask {
+    mask-image: linear-gradient(to bottom, transparent, black 8%, black 92%, transparent);
+    -webkit-mask-image: linear-gradient(to bottom, transparent, black 8%, black 92%, transparent);
+}
+@keyframes scrollUp {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-50%); }
+}
+.testimonial-column {
+    overflow: hidden;
+}
+.testimonial-track {
+    animation: scrollUp var(--scroll-speed, 25s) linear infinite;
+}
+.testimonial-column:hover .testimonial-track {
+    animation-play-state: paused;
+}
+.testimonial-card {
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.testimonial-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.4);
+}
 </style>
 </head>
 <body class="antialiased selection:bg-acid selection:text-black">
@@ -874,6 +899,164 @@ animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
         </div>
     </section>
 
+    <!-- TESTIMONIALS SECTION -->
+    <section id="testimonials" class="py-32 bg-charcoal relative overflow-hidden">
+        <div class="container mx-auto px-6 max-w-7xl relative z-10">
+            <!-- Header -->
+            <div class="flex flex-col items-center justify-center max-w-xl mx-auto mb-16 text-center">
+                <div class="inline-block border border-acid/30 py-1.5 px-5 rounded-full text-xs font-mono tracking-[0.2em] uppercase text-acid bg-acid/5 mb-6">
+                    Client Feedback
+                </div>
+                <h2 class="text-4xl md:text-5xl font-display font-bold tracking-tight text-white">
+                    VOICES FROM <span class="text-acid">THE TRENCHES</span>
+                </h2>
+                <p class="text-gray-500 mt-5 text-lg leading-relaxed">
+                    Real results from real people who stopped making excuses.
+                </p>
+            </div>
+
+            <!-- Testimonials Columns Container -->
+            <div class="flex justify-center gap-6 testimonials-mask max-h-[700px] overflow-hidden">
+
+                <!-- Column 1 -->
+                <div class="testimonial-column w-full max-w-xs" data-speed="25">
+                    <div class="testimonial-track flex flex-col gap-6 pb-6">
+                        <!-- Card 1 -->
+                        <div class="testimonial-card bg-obsidian border border-white/10 p-8 rounded-2xl hover:border-acid/30 transition-all duration-300 group">
+                            <p class="text-gray-400 leading-relaxed mb-6">
+                                "Down 15kg in 12 weeks. The nutrition framework finally made sense—no more yo-yo dieting. Coach Bademba doesn't sugarcoat anything."
+                            </p>
+                            <div class="flex items-center gap-4">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150&h=150" alt="Marcus D." class="w-12 h-12 rounded-full object-cover ring-2 ring-white/10 group-hover:ring-acid/30 transition-all">
+                                <div>
+                                    <cite class="font-bold text-white not-italic block">Marcus D.</cite>
+                                    <span class="text-xs text-gray-500 font-mono uppercase tracking-wider">12-Week Protocol</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card 2 -->
+                        <div class="testimonial-card bg-obsidian border border-white/10 p-8 rounded-2xl hover:border-acid/30 transition-all duration-300 group">
+                            <p class="text-gray-400 leading-relaxed mb-6">
+                                "Finally fixed my lower back pain after years of chiropractor visits. The movement corrections were game-changing."
+                            </p>
+                            <div class="flex items-center gap-4">
+                                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150&h=150" alt="Elena K." class="w-12 h-12 rounded-full object-cover ring-2 ring-white/10 group-hover:ring-acid/30 transition-all">
+                                <div>
+                                    <cite class="font-bold text-white not-italic block">Elena K.</cite>
+                                    <span class="text-xs text-gray-500 font-mono uppercase tracking-wider">Pain-Free Strength</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card 3 -->
+                        <div class="testimonial-card bg-obsidian border border-white/10 p-8 rounded-2xl hover:border-acid/30 transition-all duration-300 group">
+                            <p class="text-gray-400 leading-relaxed mb-6">
+                                "I'm a surgeon with zero free time. 4 sessions a week, 45 mins each. Lost fat, gained muscle. The efficiency is unreal."
+                            </p>
+                            <div class="flex items-center gap-4">
+                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=150&h=150" alt="Dr. Ahmed R." class="w-12 h-12 rounded-full object-cover ring-2 ring-white/10 group-hover:ring-acid/30 transition-all">
+                                <div>
+                                    <cite class="font-bold text-white not-italic block">Dr. Ahmed R.</cite>
+                                    <span class="text-xs text-gray-500 font-mono uppercase tracking-wider">Busy Professional</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Column 2 (Hidden on mobile) -->
+                <div class="testimonial-column hidden md:block w-full max-w-xs" data-speed="30">
+                    <div class="testimonial-track flex flex-col gap-6 pb-6">
+                        <!-- Card 4 -->
+                        <div class="testimonial-card bg-obsidian border border-white/10 p-8 rounded-2xl hover:border-acid/30 transition-all duration-300 group">
+                            <p class="text-gray-400 leading-relaxed mb-6">
+                                "Went from skinny-fat to actually looking athletic. The progressive overload system had me adding weight every week."
+                            </p>
+                            <div class="flex items-center gap-4">
+                                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=150&h=150" alt="James T." class="w-12 h-12 rounded-full object-cover ring-2 ring-white/10 group-hover:ring-acid/30 transition-all">
+                                <div>
+                                    <cite class="font-bold text-white not-italic block">James T.</cite>
+                                    <span class="text-xs text-gray-500 font-mono uppercase tracking-wider">Recomposition</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card 5 -->
+                        <div class="testimonial-card bg-obsidian border border-white/10 p-8 rounded-2xl hover:border-acid/30 transition-all duration-300 group">
+                            <p class="text-gray-400 leading-relaxed mb-6">
+                                "The weekly check-ins kept me accountable. No more 'I'll start Monday'. Coach saw through every excuse."
+                            </p>
+                            <div class="flex items-center gap-4">
+                                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=150&h=150" alt="Sophie L." class="w-12 h-12 rounded-full object-cover ring-2 ring-white/10 group-hover:ring-acid/30 transition-all">
+                                <div>
+                                    <cite class="font-bold text-white not-italic block">Sophie L.</cite>
+                                    <span class="text-xs text-gray-500 font-mono uppercase tracking-wider">Online Coaching</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card 6 -->
+                        <div class="testimonial-card bg-obsidian border border-white/10 p-8 rounded-2xl hover:border-acid/30 transition-all duration-300 group">
+                            <p class="text-gray-400 leading-relaxed mb-6">
+                                "Post-pregnancy body transformed. Diastasis recti fixed, core strength rebuilt. Stronger than before kids."
+                            </p>
+                            <div class="flex items-center gap-4">
+                                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=150&h=150" alt="Maria S." class="w-12 h-12 rounded-full object-cover ring-2 ring-white/10 group-hover:ring-acid/30 transition-all">
+                                <div>
+                                    <cite class="font-bold text-white not-italic block">Maria S.</cite>
+                                    <span class="text-xs text-gray-500 font-mono uppercase tracking-wider">Postnatal Program</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Column 3 (Hidden on tablet and mobile) -->
+                <div class="testimonial-column hidden lg:block w-full max-w-xs" data-speed="22">
+                    <div class="testimonial-track flex flex-col gap-6 pb-6">
+                        <!-- Card 7 -->
+                        <div class="testimonial-card bg-obsidian border border-white/10 p-8 rounded-2xl hover:border-acid/30 transition-all duration-300 group">
+                            <p class="text-gray-400 leading-relaxed mb-6">
+                                "At 52, I'm lifting more than I did at 30. The age excuse is dead. Bademba proved me wrong."
+                            </p>
+                            <div class="flex items-center gap-4">
+                                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=150&h=150" alt="Robert M." class="w-12 h-12 rounded-full object-cover ring-2 ring-white/10 group-hover:ring-acid/30 transition-all">
+                                <div>
+                                    <cite class="font-bold text-white not-italic block">Robert M.</cite>
+                                    <span class="text-xs text-gray-500 font-mono uppercase tracking-wider">Masters Athlete</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card 8 -->
+                        <div class="testimonial-card bg-obsidian border border-white/10 p-8 rounded-2xl hover:border-acid/30 transition-all duration-300 group">
+                            <p class="text-gray-400 leading-relaxed mb-6">
+                                "Dropped from 28% to 14% body fat. The macro framework was simple—I just followed the numbers."
+                            </p>
+                            <div class="flex items-center gap-4">
+                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150&h=150" alt="Priya N." class="w-12 h-12 rounded-full object-cover ring-2 ring-white/10 group-hover:ring-acid/30 transition-all">
+                                <div>
+                                    <cite class="font-bold text-white not-italic block">Priya N.</cite>
+                                    <span class="text-xs text-gray-500 font-mono uppercase tracking-wider">Fat Loss Focus</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card 9 -->
+                        <div class="testimonial-card bg-obsidian border border-white/10 p-8 rounded-2xl hover:border-acid/30 transition-all duration-300 group">
+                            <p class="text-gray-400 leading-relaxed mb-6">
+                                "From never touching a barbell to deadlifting 120kg. The form videos were key—every rep reviewed."
+                            </p>
+                            <div class="flex items-center gap-4">
+                                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=150&h=150" alt="Lisa C." class="w-12 h-12 rounded-full object-cover ring-2 ring-white/10 group-hover:ring-acid/30 transition-all">
+                                <div>
+                                    <cite class="font-bold text-white not-italic block">Lisa C.</cite>
+                                    <span class="text-xs text-gray-500 font-mono uppercase tracking-wider">Beginner to Strong</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
     <!-- BIG COMMUNITY CTA -->
     <section class="py-40 bg-acid relative overflow-hidden flex flex-col items-center justify-center text-center">
         <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
@@ -1096,7 +1279,19 @@ animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
             link.addEventListener('click', toggleMenu);
         });
 
-        // 7. Language Switching
+        // 7. Testimonials Infinite Scroll Setup
+        document.querySelectorAll('.testimonial-column').forEach(column => {
+            const track = column.querySelector('.testimonial-track');
+            const speed = column.getAttribute('data-speed') || 25;
+
+            // Duplicate content for seamless loop
+            track.innerHTML += track.innerHTML;
+
+            // Set animation speed
+            track.style.setProperty('--scroll-speed', speed + 's');
+        });
+
+        // 8. Language Switching
         document.querySelectorAll('.lang-option').forEach(option => {
             option.addEventListener('click', function() {
                 const lang = this.dataset.lang;
