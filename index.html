@@ -658,10 +658,12 @@ animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
                 to { transform: rotateY(-360deg); }
             }
             .carousel-container {
-                perspective: 1000px;
+                perspective: 1200px;
                 transform-style: preserve-3d;
+                width: 100%;
             }
             .carousel-cylinder {
+                position: relative;
                 transform-style: preserve-3d;
                 transition: transform 0.1s ease-out;
                 cursor: grab;
@@ -670,10 +672,13 @@ animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
                 cursor: grabbing;
             }
             .carousel-spinning {
-                animation: spinCarousel 20s linear infinite;
+                animation: spinCarousel 25s linear infinite;
             }
             .carousel-face {
                 backface-visibility: hidden;
+                position: absolute;
+                left: 50%;
+                top: 50%;
             }
             .glass-frame {
                 border: 3px solid rgba(255,255,255,0.35);
@@ -707,7 +712,7 @@ animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
             <div class="absolute right-0 top-0 w-[200px] h-full z-30 carousel-gradient-right pointer-events-none"></div>
 
             <div class="carousel-container h-full flex items-center justify-center">
-                <div id="carouselCylinder" class="carousel-cylinder carousel-spinning" style="width: 280px; height: 420px;"></div>
+                <div id="carouselCylinder" class="carousel-cylinder carousel-spinning"></div>
             </div>
         </div>
     </section>
@@ -725,20 +730,30 @@ animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
         const cylinder = document.getElementById('carouselCylinder');
         if (!cylinder) return;
 
+        // Card dimensions
+        const cardWidth = 280;
+        const cardHeight = 420;
         const faceCount = VIDEOS.length;
-        const radius = 350;
+
+        // Calculate radius for seamless spacing
+        // Formula: radius = (cardWidth * faceCount) / (2 * PI) * tightnessFactor
+        // tightnessFactor < 1 brings cards closer together
+        const tightnessFactor = 0.75;
+        const radius = (cardWidth * faceCount) / (2 * Math.PI) * tightnessFactor;
 
         VIDEOS.forEach((url, i) => {
             const face = document.createElement('div');
-            face.className = 'carousel-face absolute flex items-center justify-center';
-            face.style.width = '280px';
-            face.style.height = '420px';
+            face.className = 'carousel-face flex items-center justify-center';
+            face.style.width = `${cardWidth}px`;
+            face.style.height = `${cardHeight}px`;
+            face.style.marginLeft = `-${cardWidth / 2}px`;
+            face.style.marginTop = `-${cardHeight / 2}px`;
             face.style.transform = `rotateY(${(360 / faceCount) * i}deg) translateZ(${radius}px)`;
 
             const glassFrame = document.createElement('div');
             glassFrame.className = 'glass-frame flex items-center justify-center rounded-[24px] transition-transform duration-300 ease-out hover:scale-105 shadow-lg';
-            glassFrame.style.width = '280px';
-            glassFrame.style.height = '420px';
+            glassFrame.style.width = `${cardWidth}px`;
+            glassFrame.style.height = `${cardHeight}px`;
             glassFrame.style.overflow = 'hidden';
 
             const video = document.createElement('video');
