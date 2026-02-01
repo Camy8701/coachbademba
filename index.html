@@ -714,21 +714,21 @@ animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
 
     <script>
     (function() {
-        const IMGS = [
-            'coach-bademba.jpg',
-            'coach-bademba.jpg',
-            'coach-bademba.jpg',
-            'coach-bademba.jpg',
-            'coach-bademba.jpg'
+        const VIDEOS = [
+            'vid1.mp4',
+            'vid2.mp4',
+            'vid3.mp4',
+            'vid4.mp4',
+            'vid5.mp4'
         ];
 
         const cylinder = document.getElementById('carouselCylinder');
         if (!cylinder) return;
 
-        const faceCount = IMGS.length;
+        const faceCount = VIDEOS.length;
         const radius = 350;
 
-        IMGS.forEach((url, i) => {
+        VIDEOS.forEach((url, i) => {
             const face = document.createElement('div');
             face.className = 'carousel-face absolute flex items-center justify-center';
             face.style.width = '280px';
@@ -741,13 +741,15 @@ animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
             glassFrame.style.height = '420px';
             glassFrame.style.overflow = 'hidden';
 
-            const img = document.createElement('img');
-            img.src = url;
-            img.alt = 'Coach Bademba';
-            img.className = 'pointer-events-none h-full w-full rounded-[20px] object-cover';
-            img.draggable = false;
+            const video = document.createElement('video');
+            video.src = url;
+            video.className = 'pointer-events-none h-full w-full rounded-[20px] object-cover';
+            video.muted = true;
+            video.loop = true;
+            video.playsInline = true;
+            video.autoplay = true;
 
-            glassFrame.appendChild(img);
+            glassFrame.appendChild(video);
             face.appendChild(glassFrame);
             cylinder.appendChild(face);
         });
