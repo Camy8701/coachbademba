@@ -468,60 +468,35 @@ html { scroll-behavior: smooth; }
         </div>
     </section>
 
-    <!-- ROLLING VIDEO GALLERY -->
-    <section class="py-20 relative overflow-hidden bg-obsidian">
-        <style>
-            @keyframes spinY { from { transform: rotateY(0deg); } to { transform: rotateY(-360deg); } }
-            .gallery-container-3d { perspective: 1200px; transform-style: preserve-3d; }
-            .gallery-cylinder-3d { transform-style: preserve-3d; transition: transform 0.1s ease-out; cursor: grab; }
-            .gallery-cylinder-3d:active { cursor: grabbing; }
-            .gallery-cylinder-3d.spinning { animation: spinY 25s linear infinite; }
-            .gallery-face-3d { backface-visibility: hidden; }
-            .video-card-frame { border: 2px solid rgba(204, 255, 0, 0.3); background: rgba(15, 17, 21, 0.8); backdrop-filter: blur(8px); box-shadow: 0 0 40px rgba(204, 255, 0, 0.1), inset 0 0 20px rgba(0, 0, 0, 0.5); }
-            .video-card-frame:hover { border-color: rgba(204, 255, 0, 0.6); box-shadow: 0 0 60px rgba(204, 255, 0, 0.2), inset 0 0 20px rgba(0, 0, 0, 0.5); }
-            .gallery-gradient-left { background: linear-gradient(to right, #050505 0%, transparent 100%); }
-            .gallery-gradient-right { background: linear-gradient(to left, #050505 0%, transparent 100%); }
-        </style>
-        <div class="container mx-auto px-6 mb-8">
-            <p class="text-xs font-mono text-gray-500 uppercase tracking-widest text-center">De Reis</p>
-            <h2 class="text-3xl md:text-4xl font-display font-bold text-center mt-2">Training <span class="text-acid">Momenten</span></h2>
-        </div>
-        <div class="relative flex items-center justify-center w-full h-[500px]">
-            <div class="absolute left-0 top-0 w-[150px] h-full z-20 gallery-gradient-left pointer-events-none"></div>
-            <div class="absolute right-0 top-0 w-[150px] h-full z-20 gallery-gradient-right pointer-events-none"></div>
-            <div class="gallery-container-3d w-full h-full flex items-center justify-center">
-                <div id="videoGalleryNl" class="gallery-cylinder-3d spinning" style="width: 280px; height: 400px;"></div>
-            </div>
-        </div>
-        <script>
-        (function(){const VIDEOS=[{type:'image',src:'coach-bademba.jpg'},{type:'image',src:'coach-bademba.jpg'},{type:'image',src:'coach-bademba.jpg'},{type:'image',src:'coach-bademba.jpg'},{type:'image',src:'coach-bademba.jpg'}];const cylinder=document.getElementById('videoGalleryNl');const faceCount=VIDEOS.length;const radius=400;VIDEOS.forEach((item,i)=>{const face=document.createElement('div');face.className='gallery-face-3d absolute flex items-center justify-center';face.style.width='280px';face.style.height='400px';face.style.transform=`rotateY(${(360/faceCount)*i}deg) translateZ(${radius}px)`;const frame=document.createElement('div');frame.className='video-card-frame w-full h-full rounded-xl overflow-hidden transition-all duration-500';if(item.type==='video'){const video=document.createElement('video');video.src=item.src;video.className='w-full h-full object-cover';video.muted=true;video.loop=true;video.playsInline=true;video.autoplay=true;frame.appendChild(video)}else{const img=document.createElement('img');img.src=item.src;img.className='w-full h-full object-cover';img.alt='Training moment';img.draggable=false;frame.appendChild(img)}face.appendChild(frame);cylinder.appendChild(face)});let isDragging=false,startX=0,rotation=0;cylinder.addEventListener('mouseenter',()=>cylinder.classList.remove('spinning'));cylinder.addEventListener('mouseleave',()=>{if(!isDragging)cylinder.classList.add('spinning')});cylinder.addEventListener('mousedown',(e)=>{isDragging=true;startX=e.clientX;cylinder.classList.remove('spinning');e.preventDefault()});document.addEventListener('mousemove',(e)=>{if(!isDragging)return;const deltaX=e.clientX-startX;rotation+=deltaX*0.3;cylinder.style.transform=`rotateY(${rotation}deg)`;startX=e.clientX});document.addEventListener('mouseup',()=>{if(isDragging){isDragging=false;setTimeout(()=>cylinder.classList.add('spinning'),100)}});cylinder.addEventListener('touchstart',(e)=>{isDragging=true;startX=e.touches[0].clientX;cylinder.classList.remove('spinning')});document.addEventListener('touchmove',(e)=>{if(!isDragging)return;const deltaX=e.touches[0].clientX-startX;rotation+=deltaX*0.3;cylinder.style.transform=`rotateY(${rotation}deg)`;startX=e.touches[0].clientX});document.addEventListener('touchend',()=>{if(isDragging){isDragging=false;setTimeout(()=>cylinder.classList.add('spinning'),100)}})})();
-        </script>
-    </section>
-
     <section class="py-40 relative overflow-hidden flex items-center justify-center bg-charcoal">
+        <style>
+            @keyframes spinCarousel { from { transform: rotateY(0deg); } to { transform: rotateY(-360deg); } }
+            .carousel-container { perspective: 1000px; transform-style: preserve-3d; }
+            .carousel-cylinder { transform-style: preserve-3d; transition: transform 0.1s ease-out; cursor: grab; }
+            .carousel-cylinder:active { cursor: grabbing; }
+            .carousel-spinning { animation: spinCarousel 20s linear infinite; }
+            .carousel-face { backface-visibility: hidden; }
+            .glass-frame { border: 3px solid rgba(255,255,255,0.35); background: rgba(255,255,255,0.10); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); box-shadow: 0 2px 30px 0 rgba(255,255,255,0.10) inset, 0 1.5px 10px 0 rgba(255,255,255,0.12); }
+            .carousel-gradient-left { background: linear-gradient(to right, rgba(15,17,21,1) 0%, transparent 100%); }
+            .carousel-gradient-right { background: linear-gradient(to left, rgba(15,17,21,1) 0%, transparent 100%); }
+        </style>
         <div class="absolute inset-0 bg-grid-pattern opacity-5"></div>
-
         <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
             <h2 class="text-[13.2vw] font-display font-bold text-transparent select-none leading-none tracking-tighter whitespace-nowrap" style="-webkit-text-stroke: 2px rgba(255, 255, 255, 0.1);" id="big-text">
                COACH BADEMBA
            </h2>
         </div>
-
-        <div class="relative w-[300px] h-[400px] md:w-[400px] md:h-[600px] z-20 parallax-card perspective-1000 group">
-            <div class="absolute inset-0 bg-acid blur-[100px] opacity-20 group-hover:opacity-40 transition-opacity duration-700"></div>
-            <img src="coach-bademba.jpg" class="w-full h-full object-cover rounded-lg shadow-2xl brightness-90 contrast-110 group-hover:brightness-100 transition-all duration-700" alt="Coach Bademba">
-            <div class="absolute inset-0 border border-acid/20 rounded-lg"></div>
-
-            <div class="absolute -right-10 top-20 bg-black/80 backdrop-blur border border-white/10 p-4 rounded text-xs font-mono">
-                <div class="text-gray-400">Certificering</div>
-                <div class="text-acid text-xl">NASM CPT</div>
-            </div>
-             <div class="absolute -left-10 bottom-20 bg-black/80 backdrop-blur border border-white/10 p-4 rounded text-xs font-mono">
-                <div class="text-gray-400">Ervaring</div>
-                <div class="text-white text-xl"><span class="number-hover">10+</span> Jaar</div>
+        <div class="relative z-20 w-full h-[600px] flex items-center justify-center">
+            <div class="absolute left-0 top-0 w-[200px] h-full z-30 carousel-gradient-left pointer-events-none"></div>
+            <div class="absolute right-0 top-0 w-[200px] h-full z-30 carousel-gradient-right pointer-events-none"></div>
+            <div class="carousel-container h-full flex items-center justify-center">
+                <div id="carouselCylinderNl" class="carousel-cylinder carousel-spinning" style="width: 280px; height: 420px;"></div>
             </div>
         </div>
     </section>
+    <script>
+    (function(){const IMGS=['coach-bademba.jpg','coach-bademba.jpg','coach-bademba.jpg','coach-bademba.jpg','coach-bademba.jpg'];const cylinder=document.getElementById('carouselCylinderNl');if(!cylinder)return;const faceCount=IMGS.length,radius=350;IMGS.forEach((url,i)=>{const face=document.createElement('div');face.className='carousel-face absolute flex items-center justify-center';face.style.width='280px';face.style.height='420px';face.style.transform=`rotateY(${(360/faceCount)*i}deg) translateZ(${radius}px)`;const glassFrame=document.createElement('div');glassFrame.className='glass-frame flex items-center justify-center rounded-[24px] transition-transform duration-300 ease-out hover:scale-105 shadow-lg';glassFrame.style.width='280px';glassFrame.style.height='420px';glassFrame.style.overflow='hidden';const img=document.createElement('img');img.src=url;img.alt='Coach Bademba';img.className='pointer-events-none h-full w-full rounded-[20px] object-cover';img.draggable=false;glassFrame.appendChild(img);face.appendChild(glassFrame);cylinder.appendChild(face)});let isDragging=false,startX=0,rotation=0;cylinder.addEventListener('mouseenter',()=>cylinder.classList.remove('carousel-spinning'));cylinder.addEventListener('mouseleave',()=>{if(!isDragging)cylinder.classList.add('carousel-spinning')});cylinder.addEventListener('mousedown',(e)=>{isDragging=true;startX=e.clientX;cylinder.classList.remove('carousel-spinning');e.preventDefault()});document.addEventListener('mousemove',(e)=>{if(!isDragging)return;const deltaX=e.clientX-startX;rotation+=deltaX*0.3;cylinder.style.transform=`rotateY(${rotation}deg)`;startX=e.clientX});document.addEventListener('mouseup',()=>{if(isDragging){isDragging=false;setTimeout(()=>cylinder.classList.add('carousel-spinning'),100)}});cylinder.addEventListener('touchstart',(e)=>{isDragging=true;startX=e.touches[0].clientX;cylinder.classList.remove('carousel-spinning')});document.addEventListener('touchmove',(e)=>{if(!isDragging)return;const deltaX=e.touches[0].clientX-startX;rotation+=deltaX*0.3;cylinder.style.transform=`rotateY(${rotation}deg)`;startX=e.touches[0].clientX});document.addEventListener('touchend',()=>{if(isDragging){isDragging=false;setTimeout(()=>cylinder.classList.add('carousel-spinning'),100)}})})();
+    </script>
 
     <section id="results" class="py-20 bg-obsidian">
         <div class="container mx-auto px-6">
