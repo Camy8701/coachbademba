@@ -3,6 +3,8 @@
 <title>Bademba Training | Build Pure Grit</title>
 <!-- Tailwind CSS -->
 <script src="https://cdn.tailwindcss.com"></script>
+<!-- Three.js for Globe Animation -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
@@ -223,9 +225,79 @@ animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
     transform: translateY(-4px);
     box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.4);
 }
+/* Globe Intro Animation */
+#globe-intro {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+    background: #050505;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.8s ease-out;
+}
+#globe-intro.fade-out {
+    opacity: 0;
+    pointer-events: none;
+}
+#globe-intro.hidden {
+    display: none;
+}
+#globe-container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.globe-location-label {
+    position: absolute;
+    bottom: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Syncopate', sans-serif;
+    font-size: clamp(1.5rem, 4vw, 3rem);
+    font-weight: 700;
+    color: #CCFF00;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    text-shadow: 0 0 30px rgba(204, 255, 0, 0.5);
+}
+.globe-location-label.visible {
+    opacity: 1;
+}
+.globe-subtitle {
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+.globe-subtitle.visible {
+    opacity: 1;
+}
 </style>
 </head>
 <body class="antialiased selection:bg-acid selection:text-black">
+
+    <!-- Globe Intro Animation -->
+    <div id="globe-intro">
+        <div id="globe-container"></div>
+        <div class="globe-location-label" id="location-label">WORLD</div>
+        <div class="globe-subtitle" id="location-subtitle">Locating your coach...</div>
+    </div>
 
     <!-- Noise Overlay -->
     <div class="noise"></div>
@@ -1317,6 +1389,246 @@ animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
             });
         });
 
+    </script>
+
+    <!-- Globe Intro Animation Script -->
+    <script>
+    (function() {
+        // Check if intro was already shown this session
+        if (sessionStorage.getItem('introShown')) {
+            document.getElementById('globe-intro').classList.add('hidden');
+            return;
+        }
+
+        const container = document.getElementById('globe-container');
+        const locationLabel = document.getElementById('location-label');
+        const locationSubtitle = document.getElementById('location-subtitle');
+
+        // Scene setup
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        container.appendChild(renderer.domElement);
+
+        // Create globe
+        const globeRadius = 5;
+        const geometry = new THREE.SphereGeometry(globeRadius, 64, 64);
+
+        // Create gradient material (dark globe with grid lines effect)
+        const globeMaterial = new THREE.MeshBasicMaterial({
+            color: 0x0a0a0a,
+            transparent: true,
+            opacity: 0.9
+        });
+        const globe = new THREE.Mesh(geometry, globeMaterial);
+        scene.add(globe);
+
+        // Add wireframe overlay
+        const wireGeometry = new THREE.SphereGeometry(globeRadius * 1.002, 36, 18);
+        const wireMaterial = new THREE.MeshBasicMaterial({
+            color: 0xCCFF00,
+            wireframe: true,
+            transparent: true,
+            opacity: 0.15
+        });
+        const wireGlobe = new THREE.Mesh(wireGeometry, wireMaterial);
+        scene.add(wireGlobe);
+
+        // Add continent outlines using points
+        const continentPoints = [];
+        const numPoints = 2000;
+        for (let i = 0; i < numPoints; i++) {
+            const phi = Math.acos(-1 + (2 * i) / numPoints);
+            const theta = Math.sqrt(numPoints * Math.PI) * phi;
+
+            // Create clustered points for landmass effect
+            if (Math.random() > 0.6) {
+                const x = globeRadius * 1.01 * Math.cos(theta) * Math.sin(phi);
+                const y = globeRadius * 1.01 * Math.sin(theta) * Math.sin(phi);
+                const z = globeRadius * 1.01 * Math.cos(phi);
+                continentPoints.push(new THREE.Vector3(x, y, z));
+            }
+        }
+        const pointsGeometry = new THREE.BufferGeometry().setFromPoints(continentPoints);
+        const pointsMaterial = new THREE.PointsMaterial({
+            color: 0xCCFF00,
+            size: 0.03,
+            transparent: true,
+            opacity: 0.6
+        });
+        const points = new THREE.Points(pointsGeometry, pointsMaterial);
+        scene.add(points);
+
+        // Add glow effect
+        const glowGeometry = new THREE.SphereGeometry(globeRadius * 1.15, 32, 32);
+        const glowMaterial = new THREE.MeshBasicMaterial({
+            color: 0xCCFF00,
+            transparent: true,
+            opacity: 0.05,
+            side: THREE.BackSide
+        });
+        const glow = new THREE.Mesh(glowGeometry, glowMaterial);
+        scene.add(glow);
+
+        // Add location marker (hidden initially)
+        const markerGeometry = new THREE.ConeGeometry(0.1, 0.3, 8);
+        const markerMaterial = new THREE.MeshBasicMaterial({ color: 0xCCFF00 });
+        const marker = new THREE.Mesh(markerGeometry, markerMaterial);
+        marker.visible = false;
+        scene.add(marker);
+
+        // Ambient particles
+        const particlesGeometry = new THREE.BufferGeometry();
+        const particleCount = 500;
+        const positions = new Float32Array(particleCount * 3);
+        for (let i = 0; i < particleCount * 3; i++) {
+            positions[i] = (Math.random() - 0.5) * 50;
+        }
+        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        const particlesMaterial = new THREE.PointsMaterial({
+            color: 0xCCFF00,
+            size: 0.02,
+            transparent: true,
+            opacity: 0.3
+        });
+        const particles = new THREE.Points(particlesGeometry, particlesMaterial);
+        scene.add(particles);
+
+        // Initial camera position
+        camera.position.z = 20;
+
+        // Convert lat/lng to 3D position
+        function latLngToVector3(lat, lng, radius) {
+            const phi = (90 - lat) * (Math.PI / 180);
+            const theta = (lng + 180) * (Math.PI / 180);
+            return new THREE.Vector3(
+                -radius * Math.sin(phi) * Math.cos(theta),
+                radius * Math.cos(phi),
+                radius * Math.sin(phi) * Math.sin(theta)
+            );
+        }
+
+        // Animation targets
+        const locations = [
+            { name: 'WORLD', subtitle: 'Locating your coach...', lat: 20, lng: 0, zoom: 20, duration: 1500 },
+            { name: 'EUROPE', subtitle: 'Getting closer...', lat: 50, lng: 10, zoom: 12, duration: 1500 },
+            { name: 'BELGIUM', subtitle: 'Almost there...', lat: 50.5, lng: 4.5, zoom: 8, duration: 1200 },
+            { name: 'BRUSSELS', subtitle: 'Coach Bademba HQ', lat: 50.85, lng: 4.35, zoom: 6, duration: 1200 }
+        ];
+
+        let currentIndex = 0;
+        let animationStart = null;
+        let startPosition = { x: 0, y: 0, z: 20 };
+        let targetPosition = { x: 0, y: 0, z: 20 };
+        let startRotation = { x: 0, y: 0 };
+        let targetRotation = { x: 0, y: 0 };
+
+        function easeInOutCubic(t) {
+            return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+        }
+
+        function setTarget(index) {
+            if (index >= locations.length) {
+                // Animation complete - fade out
+                setTimeout(() => {
+                    const intro = document.getElementById('globe-intro');
+                    intro.classList.add('fade-out');
+                    sessionStorage.setItem('introShown', 'true');
+                    setTimeout(() => {
+                        intro.classList.add('hidden');
+                    }, 800);
+                }, 500);
+                return;
+            }
+
+            const loc = locations[index];
+            const targetVec = latLngToVector3(loc.lat, loc.lng, loc.zoom);
+
+            startPosition = { x: camera.position.x, y: camera.position.y, z: camera.position.z };
+            targetPosition = { x: targetVec.x, y: targetVec.y, z: targetVec.z };
+
+            startRotation = { x: globe.rotation.x, y: globe.rotation.y };
+            targetRotation = {
+                x: -(loc.lat - 20) * Math.PI / 180 * 0.5,
+                y: -loc.lng * Math.PI / 180
+            };
+
+            animationStart = Date.now();
+            currentIndex = index;
+
+            // Update labels
+            locationLabel.classList.remove('visible');
+            locationSubtitle.classList.remove('visible');
+
+            setTimeout(() => {
+                locationLabel.textContent = loc.name;
+                locationSubtitle.textContent = loc.subtitle;
+                locationLabel.classList.add('visible');
+                locationSubtitle.classList.add('visible');
+            }, 300);
+
+            // Show marker for Brussels
+            if (index === 3) {
+                const markerPos = latLngToVector3(loc.lat, loc.lng, globeRadius * 1.05);
+                marker.position.copy(markerPos);
+                marker.lookAt(0, 0, 0);
+                marker.rotateX(Math.PI);
+                marker.visible = true;
+            }
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+
+            // Subtle rotation
+            wireGlobe.rotation.y += 0.001;
+            points.rotation.y += 0.001;
+            particles.rotation.y += 0.0005;
+
+            // Handle zoom animation
+            if (animationStart !== null) {
+                const elapsed = Date.now() - animationStart;
+                const duration = locations[currentIndex].duration;
+                const progress = Math.min(elapsed / duration, 1);
+                const eased = easeInOutCubic(progress);
+
+                camera.position.x = startPosition.x + (targetPosition.x - startPosition.x) * eased;
+                camera.position.y = startPosition.y + (targetPosition.y - startPosition.y) * eased;
+                camera.position.z = startPosition.z + (targetPosition.z - startPosition.z) * eased;
+
+                globe.rotation.y = startRotation.y + (targetRotation.y - startRotation.y) * eased;
+                wireGlobe.rotation.y = globe.rotation.y;
+                points.rotation.y = globe.rotation.y;
+
+                camera.lookAt(0, 0, 0);
+
+                if (progress >= 1) {
+                    animationStart = null;
+                    setTimeout(() => setTarget(currentIndex + 1), 400);
+                }
+            }
+
+            renderer.render(scene, camera);
+        }
+
+        // Handle resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // Start animation
+        animate();
+        setTimeout(() => {
+            locationLabel.classList.add('visible');
+            locationSubtitle.classList.add('visible');
+            setTimeout(() => setTarget(1), 1500);
+        }, 500);
+
+    })();
     </script>
 
     <!-- Contact Button -->

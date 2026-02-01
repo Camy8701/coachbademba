@@ -2,6 +2,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bademba Training | Schmiede Deine Stärke</title>
 <script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
@@ -50,9 +51,22 @@ html { scroll-behavior: smooth; }
 .testimonial-column:hover .testimonial-track { animation-play-state: paused; }
 .testimonial-card { transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; }
 .testimonial-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.4); }
+#globe-intro { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 10000; background: #050505; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity 0.8s ease-out; }
+#globe-intro.fade-out { opacity: 0; pointer-events: none; }
+#globe-intro.hidden { display: none; }
+#globe-container { width: 100%; height: 100%; position: absolute; top: 0; left: 0; }
+.globe-location-label { position: absolute; bottom: 15%; left: 50%; transform: translateX(-50%); font-family: 'Syncopate', sans-serif; font-size: clamp(1.5rem, 4vw, 3rem); font-weight: 700; color: #CCFF00; text-transform: uppercase; letter-spacing: 0.2em; opacity: 0; transition: opacity 0.5s ease; text-shadow: 0 0 30px rgba(204, 255, 0, 0.5); }
+.globe-location-label.visible { opacity: 1; }
+.globe-subtitle { position: absolute; bottom: 10%; left: 50%; transform: translateX(-50%); font-family: 'Space Grotesk', sans-serif; font-size: 0.875rem; color: rgba(255, 255, 255, 0.5); text-transform: uppercase; letter-spacing: 0.3em; opacity: 0; transition: opacity 0.5s ease; }
+.globe-subtitle.visible { opacity: 1; }
 </style>
 </head>
 <body class="antialiased selection:bg-acid selection:text-black">
+    <div id="globe-intro">
+        <div id="globe-container"></div>
+        <div class="globe-location-label" id="location-label">WELT</div>
+        <div class="globe-subtitle" id="location-subtitle">Finden Ihren Coach...</div>
+    </div>
 
     <div class="noise"></div>
 
@@ -849,6 +863,10 @@ html { scroll-behavior: smooth; }
                 window.location.href = newPage;
             });
         });
+    </script>
+
+    <script>
+    (function(){if(sessionStorage.getItem('introShown')){document.getElementById('globe-intro').classList.add('hidden');return}const container=document.getElementById('globe-container'),locationLabel=document.getElementById('location-label'),locationSubtitle=document.getElementById('location-subtitle'),scene=new THREE.Scene,camera=new THREE.PerspectiveCamera(45,window.innerWidth/window.innerHeight,.1,1e3),renderer=new THREE.WebGLRenderer({antialias:!0,alpha:!0});renderer.setSize(window.innerWidth,window.innerHeight);renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));container.appendChild(renderer.domElement);const globeRadius=5,geometry=new THREE.SphereGeometry(globeRadius,64,64),globeMaterial=new THREE.MeshBasicMaterial({color:0x0a0a0a,transparent:!0,opacity:.9}),globe=new THREE.Mesh(geometry,globeMaterial);scene.add(globe);const wireGeometry=new THREE.SphereGeometry(globeRadius*1.002,36,18),wireMaterial=new THREE.MeshBasicMaterial({color:0xCCFF00,wireframe:!0,transparent:!0,opacity:.15}),wireGlobe=new THREE.Mesh(wireGeometry,wireMaterial);scene.add(wireGlobe);const continentPoints=[];for(let i=0;i<2e3;i++){const phi=Math.acos(-1+2*i/2e3),theta=Math.sqrt(2e3*Math.PI)*phi;if(Math.random()>.6){continentPoints.push(new THREE.Vector3(globeRadius*1.01*Math.cos(theta)*Math.sin(phi),globeRadius*1.01*Math.sin(theta)*Math.sin(phi),globeRadius*1.01*Math.cos(phi)))}}const pointsGeometry=new THREE.BufferGeometry().setFromPoints(continentPoints),pointsMaterial=new THREE.PointsMaterial({color:0xCCFF00,size:.03,transparent:!0,opacity:.6}),points=new THREE.Points(pointsGeometry,pointsMaterial);scene.add(points);const glowGeometry=new THREE.SphereGeometry(globeRadius*1.15,32,32),glowMaterial=new THREE.MeshBasicMaterial({color:0xCCFF00,transparent:!0,opacity:.05,side:THREE.BackSide}),glow=new THREE.Mesh(glowGeometry,glowMaterial);scene.add(glow);const markerGeometry=new THREE.ConeGeometry(.1,.3,8),markerMaterial=new THREE.MeshBasicMaterial({color:0xCCFF00}),marker=new THREE.Mesh(markerGeometry,markerMaterial);marker.visible=!1;scene.add(marker);const particlesGeometry=new THREE.BufferGeometry,positions=new Float32Array(1500);for(let i=0;i<1500;i++)positions[i]=(Math.random()-.5)*50;particlesGeometry.setAttribute('position',new THREE.BufferAttribute(positions,3));const particlesMaterial=new THREE.PointsMaterial({color:0xCCFF00,size:.02,transparent:!0,opacity:.3}),particles=new THREE.Points(particlesGeometry,particlesMaterial);scene.add(particles);camera.position.z=20;function latLngToVector3(lat,lng,radius){const phi=(90-lat)*(Math.PI/180),theta=(lng+180)*(Math.PI/180);return new THREE.Vector3(-radius*Math.sin(phi)*Math.cos(theta),radius*Math.cos(phi),radius*Math.sin(phi)*Math.sin(theta))}const locations=[{name:'WELT',subtitle:'Finden Ihren Coach...',lat:20,lng:0,zoom:20,duration:1500},{name:'EUROPA',subtitle:'Kommen näher...',lat:50,lng:10,zoom:12,duration:1500},{name:'BELGIEN',subtitle:'Fast da...',lat:50.5,lng:4.5,zoom:8,duration:1200},{name:'BRÜSSEL',subtitle:'Coach Bademba HQ',lat:50.85,lng:4.35,zoom:6,duration:1200}];let currentIndex=0,animationStart=null,startPosition={x:0,y:0,z:20},targetPosition={x:0,y:0,z:20},startRotation={x:0,y:0},targetRotation={x:0,y:0};function easeInOutCubic(t){return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2}function setTarget(index){if(index>=locations.length){setTimeout(()=>{const intro=document.getElementById('globe-intro');intro.classList.add('fade-out');sessionStorage.setItem('introShown','true');setTimeout(()=>intro.classList.add('hidden'),800)},500);return}const loc=locations[index],targetVec=latLngToVector3(loc.lat,loc.lng,loc.zoom);startPosition={x:camera.position.x,y:camera.position.y,z:camera.position.z};targetPosition={x:targetVec.x,y:targetVec.y,z:targetVec.z};startRotation={x:globe.rotation.x,y:globe.rotation.y};targetRotation={x:-(loc.lat-20)*Math.PI/180*.5,y:-loc.lng*Math.PI/180};animationStart=Date.now();currentIndex=index;locationLabel.classList.remove('visible');locationSubtitle.classList.remove('visible');setTimeout(()=>{locationLabel.textContent=loc.name;locationSubtitle.textContent=loc.subtitle;locationLabel.classList.add('visible');locationSubtitle.classList.add('visible')},300);if(index===3){const markerPos=latLngToVector3(loc.lat,loc.lng,globeRadius*1.05);marker.position.copy(markerPos);marker.lookAt(0,0,0);marker.rotateX(Math.PI);marker.visible=!0}}function animate(){requestAnimationFrame(animate);wireGlobe.rotation.y+=.001;points.rotation.y+=.001;particles.rotation.y+=.0005;if(animationStart!==null){const elapsed=Date.now()-animationStart,duration=locations[currentIndex].duration,progress=Math.min(elapsed/duration,1),eased=easeInOutCubic(progress);camera.position.x=startPosition.x+(targetPosition.x-startPosition.x)*eased;camera.position.y=startPosition.y+(targetPosition.y-startPosition.y)*eased;camera.position.z=startPosition.z+(targetPosition.z-startPosition.z)*eased;globe.rotation.y=startRotation.y+(targetRotation.y-startRotation.y)*eased;wireGlobe.rotation.y=globe.rotation.y;points.rotation.y=globe.rotation.y;camera.lookAt(0,0,0);if(progress>=1){animationStart=null;setTimeout(()=>setTarget(currentIndex+1),400)}}renderer.render(scene,camera)}window.addEventListener('resize',()=>{camera.aspect=window.innerWidth/window.innerHeight;camera.updateProjectionMatrix();renderer.setSize(window.innerWidth,window.innerHeight)});animate();setTimeout(()=>{locationLabel.classList.add('visible');locationSubtitle.classList.add('visible');setTimeout(()=>setTarget(1),1500)},500)})();
     </script>
 
     <!-- Contact Button -->
