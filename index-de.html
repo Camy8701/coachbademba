@@ -405,6 +405,36 @@ html { scroll-behavior: smooth; }
         </div>
     </section>
 
+    <!-- ROLLING VIDEO GALLERY -->
+    <section class="py-20 relative overflow-hidden bg-obsidian">
+        <style>
+            @keyframes spinY { from { transform: rotateY(0deg); } to { transform: rotateY(-360deg); } }
+            .gallery-container-3d { perspective: 1200px; transform-style: preserve-3d; }
+            .gallery-cylinder-3d { transform-style: preserve-3d; transition: transform 0.1s ease-out; cursor: grab; }
+            .gallery-cylinder-3d:active { cursor: grabbing; }
+            .gallery-cylinder-3d.spinning { animation: spinY 25s linear infinite; }
+            .gallery-face-3d { backface-visibility: hidden; }
+            .video-card-frame { border: 2px solid rgba(204, 255, 0, 0.3); background: rgba(15, 17, 21, 0.8); backdrop-filter: blur(8px); box-shadow: 0 0 40px rgba(204, 255, 0, 0.1), inset 0 0 20px rgba(0, 0, 0, 0.5); }
+            .video-card-frame:hover { border-color: rgba(204, 255, 0, 0.6); box-shadow: 0 0 60px rgba(204, 255, 0, 0.2), inset 0 0 20px rgba(0, 0, 0, 0.5); }
+            .gallery-gradient-left { background: linear-gradient(to right, #050505 0%, transparent 100%); }
+            .gallery-gradient-right { background: linear-gradient(to left, #050505 0%, transparent 100%); }
+        </style>
+        <div class="container mx-auto px-6 mb-8">
+            <p class="text-xs font-mono text-gray-500 uppercase tracking-widest text-center">Die Reise</p>
+            <h2 class="text-3xl md:text-4xl font-display font-bold text-center mt-2">Training <span class="text-acid">Momente</span></h2>
+        </div>
+        <div class="relative flex items-center justify-center w-full h-[500px]">
+            <div class="absolute left-0 top-0 w-[150px] h-full z-20 gallery-gradient-left pointer-events-none"></div>
+            <div class="absolute right-0 top-0 w-[150px] h-full z-20 gallery-gradient-right pointer-events-none"></div>
+            <div class="gallery-container-3d w-full h-full flex items-center justify-center">
+                <div id="videoGalleryDe" class="gallery-cylinder-3d spinning" style="width: 280px; height: 400px;"></div>
+            </div>
+        </div>
+        <script>
+        (function(){const VIDEOS=[{type:'image',src:'coach-bademba.jpg'},{type:'image',src:'coach-bademba.jpg'},{type:'image',src:'coach-bademba.jpg'},{type:'image',src:'coach-bademba.jpg'},{type:'image',src:'coach-bademba.jpg'}];const cylinder=document.getElementById('videoGalleryDe');const faceCount=VIDEOS.length;const radius=400;VIDEOS.forEach((item,i)=>{const face=document.createElement('div');face.className='gallery-face-3d absolute flex items-center justify-center';face.style.width='280px';face.style.height='400px';face.style.transform=`rotateY(${(360/faceCount)*i}deg) translateZ(${radius}px)`;const frame=document.createElement('div');frame.className='video-card-frame w-full h-full rounded-xl overflow-hidden transition-all duration-500';if(item.type==='video'){const video=document.createElement('video');video.src=item.src;video.className='w-full h-full object-cover';video.muted=true;video.loop=true;video.playsInline=true;video.autoplay=true;frame.appendChild(video)}else{const img=document.createElement('img');img.src=item.src;img.className='w-full h-full object-cover';img.alt='Training Moment';img.draggable=false;frame.appendChild(img)}face.appendChild(frame);cylinder.appendChild(face)});let isDragging=false,startX=0,rotation=0;cylinder.addEventListener('mouseenter',()=>cylinder.classList.remove('spinning'));cylinder.addEventListener('mouseleave',()=>{if(!isDragging)cylinder.classList.add('spinning')});cylinder.addEventListener('mousedown',(e)=>{isDragging=true;startX=e.clientX;cylinder.classList.remove('spinning');e.preventDefault()});document.addEventListener('mousemove',(e)=>{if(!isDragging)return;const deltaX=e.clientX-startX;rotation+=deltaX*0.3;cylinder.style.transform=`rotateY(${rotation}deg)`;startX=e.clientX});document.addEventListener('mouseup',()=>{if(isDragging){isDragging=false;setTimeout(()=>cylinder.classList.add('spinning'),100)}});cylinder.addEventListener('touchstart',(e)=>{isDragging=true;startX=e.touches[0].clientX;cylinder.classList.remove('spinning')});document.addEventListener('touchmove',(e)=>{if(!isDragging)return;const deltaX=e.touches[0].clientX-startX;rotation+=deltaX*0.3;cylinder.style.transform=`rotateY(${rotation}deg)`;startX=e.touches[0].clientX});document.addEventListener('touchend',()=>{if(isDragging){isDragging=false;setTimeout(()=>cylinder.classList.add('spinning'),100)}})})();
+        </script>
+    </section>
+
     <section class="py-40 relative overflow-hidden flex items-center justify-center bg-charcoal">
         <div class="absolute inset-0 bg-grid-pattern opacity-5"></div>
         <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
